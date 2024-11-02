@@ -1,6 +1,6 @@
 <template>
   <nuxt-route-announcer />
-  <nuxt-layout>
+  <nuxt-layout name="default-layout">
     <nuxt-page />
   </nuxt-layout>
 </template>
