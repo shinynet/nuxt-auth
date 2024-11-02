@@ -10,27 +10,50 @@
       style="max-width: 500px; margin: auto"
       @submit="handleSubmit"
     >
-      <q-input
-        v-model="email"
-        :rules="emailRules"
-        filled
-        label="Email"
-      />
-
-      <q-input
-        v-model="password"
-        :rules="passwordRules"
-        filled
-        label="Password"
-        lazy-rules
-        type="password"
-      />
-
-      <q-btn
+      <q-card
+        bordered
         flat
-        label="Login"
-        type="submit"
-      />
+      >
+        <q-card-section>
+          <h1 class="text-h6">
+            Login
+          </h1>
+        </q-card-section>
+        <q-card-section>
+          <q-input
+            v-model="email"
+            :rules="emailRules"
+            filled
+            label="Email"
+          >
+            <template #before>
+              <q-icon name="mail" />
+            </template>
+          </q-input>
+
+          <q-input
+            v-model="password"
+            :rules="passwordRules"
+            filled
+            label="Password"
+            lazy-rules
+            type="password"
+          >
+            <template #before>
+              <q-icon name="key" />
+            </template>
+          </q-input>
+
+          <q-card-actions align="right">
+            <q-btn
+              color="primary"
+              icon-right="login"
+              label="Login"
+              type="submit"
+            />
+          </q-card-actions>
+        </q-card-section>
+      </q-card>
     </q-form>
   </q-page>
 </template>

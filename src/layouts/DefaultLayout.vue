@@ -8,7 +8,11 @@
     >
       <q-toolbar>
         <q-toolbar-title>
-          Authentication Example
+          <q-avatar
+            font-size="36px"
+            icon="private_connectivity"
+          />
+          Authentication
         </q-toolbar-title>
         <q-btn
           dense
