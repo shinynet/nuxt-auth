@@ -1,5 +1,12 @@
 <template>
   <q-page padding>
+    <q-banner
+      v-if="error"
+      class="bg-negative text-white"
+    >
+      A user with that username and password was not found.
+    </q-banner>
+
     <q-form
       autocapitalize="off"
       autocomplete="off"
@@ -19,15 +26,17 @@
             Login
           </h1>
         </q-card-section>
+
         <q-card-section>
           <q-input
-            v-model="email"
-            :rules="emailRules"
+            v-model="username"
+            :rules="usernameRules"
             filled
-            label="Email"
+            label="Username"
+            lazy-rules
           >
             <template #before>
-              <q-icon name="mail" />
+              <q-icon name="person" />
             </template>
           </q-input>
 
@@ -43,16 +52,16 @@
               <q-icon name="key" />
             </template>
           </q-input>
-
-          <q-card-actions align="right">
-            <q-btn
-              color="primary"
-              icon-right="login"
-              label="Login"
-              type="submit"
-            />
-          </q-card-actions>
         </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn
+            color="primary"
+            icon-right="login"
+            label="Login"
+            type="submit"
+          />
+        </q-card-actions>
       </q-card>
     </q-form>
   </q-page>
@@ -64,10 +73,9 @@ definePageMeta({
   path: '/login',
 })
 
-const email = ref('')
-const emailRules = [
-  (value: string) => validateRequired(value) || 'Email is required',
-  (value: string) => validateEmail(value) || 'Email is not valid',
+const username = ref('')
+const usernameRules = [
+  (value: string) => validateRequired(value) || 'Username is required',
 ]
 
 const password = ref('')
@@ -76,7 +84,24 @@ const passwordRules = [
   (value: string) => validateMinLength(6)(value) || 'Password must be at least 6 characters',
 ]
 
+const authStore = useAuthStore()
+const { execute: login, error } = useAsyncData(
+  'login',
+  () => authStore.login(username.value, password.value)
+    .then(() => {
+      navigateTo('/')
+    })
+    .catch((error) => {
+      password.value = ''
+      throw error
+    }),
+  {
+    immediate: false,
+  },
+)
+
 const handleSubmit = () => {
+  login()
 }
 </script>
 
