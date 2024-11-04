@@ -3,6 +3,7 @@ import type { User } from '~/types/User'
 export const useAuthStore = defineStore('auth', () => {
   const isAuthenticated = ref(false)
   const user = ref<User>()
+  const redirect = ref<string>()
 
   const login = (username: string, password: string) => $fetch('/api/auth/login', {
     method: 'POST',
@@ -56,7 +57,7 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   const fetchUser = () => $fetch('/api/auth/user', {
-    headers: useRequestHeaders(['cookie']),
+    headers: useRequestHeaders(['cookie']), // this is important!
     onResponse: ({ response }) => {
       if (!response.ok) return
 
@@ -90,6 +91,7 @@ export const useAuthStore = defineStore('auth', () => {
   return {
     isAuthenticated,
     user,
+    redirect,
     fetchUser,
     login,
     logout,

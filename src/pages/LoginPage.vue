@@ -89,7 +89,8 @@ const { execute: login, error } = useAsyncData(
   'login',
   () => authStore.login(username.value, password.value)
     .then(() => {
-      navigateTo('/')
+      navigateTo(authStore.redirect || '/')
+      authStore.redirect = undefined
     })
     .catch((error) => {
       password.value = ''

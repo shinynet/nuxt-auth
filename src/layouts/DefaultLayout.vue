@@ -82,8 +82,15 @@
           label="Home"
           to="/"
         />
-        <q-route-tab label="Store" />
-        <q-route-tab label="Account" />
+        <q-route-tab
+          label="Store"
+          to="/store"
+        />
+        <q-route-tab
+          v-if="authStore.isAuthenticated"
+          label="Store Admin"
+          to="/store/admin"
+        />
       </q-tabs>
     </q-header>
 
