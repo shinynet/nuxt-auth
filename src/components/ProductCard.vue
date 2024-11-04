@@ -15,7 +15,9 @@
         <h2 class="text-h6">
           {{ title }}
         </h2>
+
         <div>{{ description }}</div>
+
         <q-rating
           :model-value="rating"
           color="orange"
@@ -23,10 +25,13 @@
           readonly
           size="1em"
         />
+
         <div class="text-weight-bold text-h6">
           {{ formatPrice(price) }}
         </div>
+
         <div>{{ shippingInformation }}</div>
+
         <q-btn
           class="bg-accent text-white"
           size="sm"
@@ -39,8 +44,6 @@
 </template>
 
 <script lang="ts" setup>
-import { formatPrice } from '../utils/formatUtils'
-
 defineProps<Product>()
 </script>
 
