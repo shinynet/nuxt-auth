@@ -1,5 +1,3 @@
-import type { User } from '~/types/User'
-
 export const useAuthStore = defineStore('auth', () => {
   const isAuthenticated = ref(false)
   const user = ref<User>()
