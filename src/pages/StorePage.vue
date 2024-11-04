@@ -61,10 +61,12 @@ const productsQuery = computed(() => ({
 }))
 
 const productsStore = useProductsStore()
+const { data: productsCache } = useNuxtData(`products?page=${page.value}`)
 const { data: productsData, status: productsStatus } = await useLazyAsyncData(
-  'products',
+  `products?page=${page.value}`,
   () => productsStore.fetchProducts(productsQuery.value), {
     watch: [productsQuery],
+    default: () => productsCache.value,
   },
 )
 
@@ -74,9 +76,6 @@ const pageCount = computed(() => Math.ceil(total.value / limit))
 
 watch(page, (newPage) => {
   navigateTo(`/store?page=${newPage}`)
-})
-watch(productsStatus, (newStatus) => {
-  console.log('productsStatus: ', newStatus)
 })
 </script>
 
