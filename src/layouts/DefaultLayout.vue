@@ -77,10 +77,13 @@
         />
       </q-toolbar>
 
-      <q-tabs align="left">
-        <q-route-tab label="Page One" />
-        <q-route-tab label="Page Two" />
-        <q-route-tab label="Page Three" />
+      <q-tabs align="center">
+        <q-route-tab
+          label="Home"
+          to="/"
+        />
+        <q-route-tab label="Store" />
+        <q-route-tab label="Account" />
       </q-tabs>
     </q-header>
 

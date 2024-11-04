@@ -4,7 +4,7 @@ export const useAuthStore = defineStore('auth', () => {
   const isAuthenticated = ref(false)
   const user = ref<User>()
 
-  const login = (username: string, password: string) => $fetch('/api/login', {
+  const login = (username: string, password: string) => $fetch('/api/auth/login', {
     method: 'POST',
     body: {
       username,
@@ -55,9 +55,11 @@ export const useAuthStore = defineStore('auth', () => {
     user.value = undefined
   }
 
-  const fetchUser = () => $fetch('/api/user', {
+  const fetchUser = () => $fetch('/api/auth/user', {
     headers: useRequestHeaders(['cookie']),
     onResponse: ({ response }) => {
+      if (!response.ok) return
+
       const {
         id,
         username,
@@ -79,6 +81,9 @@ export const useAuthStore = defineStore('auth', () => {
       }
 
       isAuthenticated.value = true
+    },
+    onResponseError: () => {
+      logout()
     },
   })
 
