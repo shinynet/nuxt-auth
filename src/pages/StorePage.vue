@@ -1,10 +1,20 @@
 <template>
   <q-page padding>
     <h1 class="text-h4">
-      Store Page
+      Store
     </h1>
+
+    <template v-if="productsStatus === 'pending'">
+      <product-skeleton-card
+        v-for="i in 10"
+        :key="i"
+        class="q-mb-md"
+      />
+    </template>
+
     <product-card
       v-for="product in products"
+      v-else
       :key="product.id"
       :="product"
       class="q-mb-md"
@@ -51,7 +61,7 @@ const productsQuery = computed(() => ({
 }))
 
 const storeStore = useStoreStore()
-const { data: productsData } = await useAsyncData(
+const { data: productsData, status: productsStatus } = await useLazyAsyncData(
   'products',
   () => storeStore.fetchProducts(productsQuery.value), {
     watch: [productsQuery],
@@ -64,6 +74,9 @@ const pageCount = computed(() => Math.ceil(total.value / limit))
 
 watch(page, (newPage) => {
   navigateTo(`/store?page=${newPage}`)
+})
+watch(productsStatus, (newStatus) => {
+  console.log('productsStatus: ', newStatus)
 })
 </script>
 
