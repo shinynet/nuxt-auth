@@ -60,10 +60,10 @@ const productsQuery = computed(() => ({
   skip: (page.value - 1) * limit,
 }))
 
-const storeStore = useStoreStore()
+const productsStore = useProductsStore()
 const { data: productsData, status: productsStatus } = await useLazyAsyncData(
   'products',
-  () => storeStore.fetchProducts(productsQuery.value), {
+  () => productsStore.fetchProducts(productsQuery.value), {
     watch: [productsQuery],
   },
 )

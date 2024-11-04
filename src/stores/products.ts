@@ -1,8 +1,8 @@
-export const useStoreStore = defineStore('store', () => {
+export const useProductsStore = defineStore('products', () => {
   const products = ref<ProductsResponse[]>()
 
   const fetchProducts = (query: { limit: number, skip: number }) => $fetch(
-    '/api/store/products',
+    '/api/products',
     {
       query,
       onResponse: ({ response }) => {
