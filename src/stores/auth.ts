@@ -58,7 +58,7 @@ export const useAuthStore = defineStore('auth', () => {
     headers: useRequestHeaders(['cookie']), // this is important!
     onResponse: ({ response }) => {
       if (!response.ok) return
-
+      console.log('response: ', response)
       const {
         id,
         username,
