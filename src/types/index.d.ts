@@ -52,8 +52,8 @@ declare global {
   }
 
   interface Category {
-    slug: string
     name: string
+    slug: string
     url: string
   }
 }

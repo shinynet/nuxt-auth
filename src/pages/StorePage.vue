@@ -46,9 +46,8 @@
 definePageMeta({
   title: 'Store',
   path: '/store',
-  middleware: [() => {
-    if (import.meta.client) window.scrollTo(0, 0)
-  }],
+  scrollToTop: true,
+  categoryDrawer: true,
 })
 
 const { query } = useRoute()
@@ -60,13 +59,14 @@ const productsQuery = computed(() => ({
   skip: (page.value - 1) * limit,
 }))
 
-const productsStore = useProductsStore()
-const { data: productsCache } = useNuxtData(`products?page=${page.value}`)
-const { data: productsData, status: productsStatus } = await useLazyAsyncData(
-  `products?page=${page.value}`,
-  () => productsStore.fetchProducts(productsQuery.value), {
+const storeStore = useProductsStore()
+const {
+  data: productsData,
+  status: productsStatus,
+} = await useLazyAsyncData<ProductsResponse>(
+  'products',
+  () => storeStore.fetchProducts(productsQuery.value), {
     watch: [productsQuery],
-    default: () => productsCache.value,
   },
 )
 

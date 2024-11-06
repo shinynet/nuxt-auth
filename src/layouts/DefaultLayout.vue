@@ -15,57 +15,13 @@
           Authentication
         </q-toolbar-title>
 
-        <q-btn
+        <settings-menu
           v-if="isAuthenticated && user"
-          flat
-          round
-        >
-          <q-avatar>
-            <img
-              :src="user.image"
-              alt="user avatar"
-            >
-          </q-avatar>
-          <q-menu>
-            <div class="row no-wrap q-pa-md">
-              <div class="column">
-                <div class="text-h6 q-mb-md">
-                  Settings
-                </div>
-              </div>
-
-              <q-separator
-                class="q-mx-lg"
-                inset
-                vertical
-              />
-
-              <div class="column items-center">
-                <q-avatar size="72px">
-                  <img
-                    :src="user.image"
-                    alt="user avatar"
-                  >
-                </q-avatar>
-
-                <div class="text-subtitle1 q-mt-md q-mb-xs">
-                  {{ user.firstName }}
-                  {{ user.lastName }}
-                </div>
-
-                <q-btn
-                  v-close-popup
-                  color="primary"
-                  flat
-                  label="Logout"
-                  push
-                  size="sm"
-                  @click="logout"
-                />
-              </div>
-            </div>
-          </q-menu>
-        </q-btn>
+          :first-name="user.firstName"
+          :image="user.image"
+          :last-name="user.lastName"
+          @logout="logout"
+        />
 
         <q-btn
           v-else
@@ -94,6 +50,8 @@
       </q-tabs>
     </q-header>
 
+    <category-drawer v-if="drawerOpen" />
+
     <q-page-container>
       <slot />
     </q-page-container>
@@ -101,12 +59,15 @@
 </template>
 
 <script lang="ts" setup>
+const route = useRoute()
+const drawerOpen = computed(
+  () => !!route.meta && Boolean(route.meta.categoryDrawer),
+)
+
 const authStore = useAuthStore()
-
 const { isAuthenticated, user } = storeToRefs(authStore)
-
 const logout = () => {
   authStore.logout()
-  navigateTo('/')
+  navigateTo('/login')
 }
 </script>
