@@ -71,6 +71,7 @@
 definePageMeta({
   title: 'Login',
   path: '/login',
+  middleware: ['redirect'],
 })
 
 const username = ref('')

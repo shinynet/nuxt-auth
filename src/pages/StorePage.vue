@@ -46,9 +46,8 @@
 definePageMeta({
   title: 'Store',
   path: '/store',
-  middleware: [() => {
-    if (import.meta.client) window.scrollTo(0, 0)
-  }],
+  scrollToTop: true,
+  categoryDrawer: true,
 })
 
 const { query } = useRoute()
