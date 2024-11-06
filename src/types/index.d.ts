@@ -50,6 +50,12 @@ declare global {
     images: string[]
     thumbnail: string
   }
+
+  interface Category {
+    name: string
+    slug: string
+    url: string
+  }
 }
 
 export {}

@@ -59,8 +59,11 @@ const productsQuery = computed(() => ({
   skip: (page.value - 1) * limit,
 }))
 
-const storeStore = useStoreStore()
-const { data: productsData, status: productsStatus } = await useLazyAsyncData(
+const storeStore = useProductsStore()
+const {
+  data: productsData,
+  status: productsStatus,
+} = await useLazyAsyncData<ProductsResponse>(
   'products',
   () => storeStore.fetchProducts(productsQuery.value), {
     watch: [productsQuery],
@@ -73,9 +76,6 @@ const pageCount = computed(() => Math.ceil(total.value / limit))
 
 watch(page, (newPage) => {
   navigateTo(`/store?page=${newPage}`)
-})
-watch(productsStatus, (newStatus) => {
-  console.log('productsStatus: ', newStatus)
 })
 </script>
 

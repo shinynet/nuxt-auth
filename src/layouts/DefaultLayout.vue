@@ -59,8 +59,6 @@
 </template>
 
 <script lang="ts" setup>
-import SettingsMenu from '~/components/SettingsMenu.vue'
-
 const route = useRoute()
 const drawerOpen = computed(
   () => !!route.meta && Boolean(route.meta.categoryDrawer),
