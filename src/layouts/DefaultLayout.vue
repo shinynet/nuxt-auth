@@ -1,7 +1,6 @@
 <template>
   <q-layout view="hHh lpR fFf">
     <q-header
-      bordered
       class="bg-primary text-white"
       height-hint="98"
       reveal
@@ -50,8 +49,6 @@
       </q-tabs>
     </q-header>
 
-    <category-drawer v-if="drawerOpen" />
-
     <q-page-container>
       <slot />
     </q-page-container>
@@ -59,11 +56,6 @@
 </template>
 
 <script lang="ts" setup>
-const route = useRoute()
-const drawerOpen = computed(
-  () => !!route.meta && Boolean(route.meta.categoryDrawer),
-)
-
 const authStore = useAuthStore()
 const { isAuthenticated, user } = storeToRefs(authStore)
 const logout = () => {
