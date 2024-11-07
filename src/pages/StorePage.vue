@@ -1,5 +1,5 @@
 <template>
-  <q-page padding>
+  <nuxt-layout name="store-layout">
     <h1 class="text-h4">
       Store
     </h1>
@@ -39,7 +39,7 @@
         icon="keyboard_arrow_up"
       />
     </q-page-scroller>
-  </q-page>
+  </nuxt-layout>
 </template>
 
 <script lang="ts" setup>
