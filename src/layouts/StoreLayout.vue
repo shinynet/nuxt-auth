@@ -6,9 +6,11 @@
       </q-toolbar-title>
     </q-toolbar>
 
-    <slot />
+    <div class="row">
+      <category-drawer class="col-auto" />
+      <div class="col">
+        <slot />
+      </div>
+    </div>
   </q-page>
 </template>
-
-<script lang="ts" setup>
-</script>

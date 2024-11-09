@@ -1,9 +1,5 @@
 <template>
   <nuxt-layout name="store-layout">
-    <h1 class="text-h4">
-      Store
-    </h1>
-
     <template v-if="productsStatus === 'pending'">
       <product-skeleton-card
         v-for="i in 10"
@@ -54,7 +50,7 @@ const { query } = useRoute()
 const page = ref(query.page ? Number(query.page) : 1)
 
 const limit = 10
-const productsQuery = computed(() => ({
+const productsQuery = computed<Query>(() => ({
   limit,
   skip: (page.value - 1) * limit,
 }))

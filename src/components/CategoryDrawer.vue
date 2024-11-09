@@ -1,21 +1,17 @@
 <template>
-  <q-drawer
-    behavior="desktop"
-    bordered
-    show-if-above
-    side="left"
+  <q-list
+    dense
+    padding
   >
-    <q-list>
-      <q-item
-        v-for="category in categoriesData"
-        :key="category.name"
-        v-ripple
-        clickable
-      >
-        <q-item-section>{{ category.name }}</q-item-section>
-      </q-item>
-    </q-list>
-  </q-drawer>
+    <q-item
+      v-for="category in categoriesData"
+      :key="category.name"
+      v-ripple
+      clickable
+    >
+      <q-item-section>{{ category.name }}</q-item-section>
+    </q-item>
+  </q-list>
 </template>
 
 <script lang="ts" setup>

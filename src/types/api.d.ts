@@ -12,6 +12,11 @@ declare global {
     accessToken: string
     refreshToken: string
   }
+
+  interface Query {
+    limit: number
+    skip: number
+  }
 }
 
 export {}
