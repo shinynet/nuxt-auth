@@ -1,5 +1,6 @@
 <template>
   <nuxt-layout name="store-layout">
+    <h1>{{ category }}</h1>
     <template v-if="productsStatus === 'pending'">
       <product-skeleton-card
         v-for="i in 10"
@@ -15,14 +16,15 @@
       :="product"
       class="q-mb-md"
     />
-    <div class="q-pa-lg flex flex-center">
+    <footer class="q-pa-lg flex flex-center">
       <q-pagination
-        v-model="page"
         :max="pageCount"
         :max-pages="6"
+        :model-value="page"
         boundary-numbers
+        @update:model-value="handlePageChange"
       />
-    </div>
+    </footer>
 
     <q-page-scroller
       :offset="[18, 18]"
@@ -41,20 +43,36 @@
 <script lang="ts" setup>
 definePageMeta({
   title: 'Store',
-  path: '/store',
-  scrollToTop: true,
+  path: '/products/categories/:category?',
   categoryDrawer: true,
+  props: ({ params, query }) => ({
+    category: params.category,
+    page: Number(query.page ?? 0),
+  }),
 })
 
-const { query } = useRoute()
-const page = ref(query.page ? Number(query.page) : 1)
+const { category, page = 1 } = defineProps<{
+  category: string
+  page: number
+}>()
 
+/* Pagination */
 const limit = 10
 const productsQuery = computed<Query>(() => ({
+  category,
   limit,
-  skip: (page.value - 1) * limit,
+  skip: (page - 1) * limit,
 }))
 
+const handlePageChange = (page: number) => {
+  navigateTo({
+    path: '/products/categories',
+    query: { page },
+  })
+  window.scrollTo(0, 0)
+}
+
+/* Products fetching */
 const storeStore = useProductsStore()
 const {
   data: productsData,
@@ -69,10 +87,6 @@ const {
 const products = computed(() => productsData.value?.products ?? [])
 const total = computed(() => productsData.value?.total ?? 0)
 const pageCount = computed(() => Math.ceil(total.value / limit))
-
-watch(page, (newPage) => {
-  navigateTo(`/store?page=${newPage}`)
-})
 </script>
 
 <style scoped>

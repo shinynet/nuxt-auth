@@ -39,7 +39,7 @@
         />
         <q-route-tab
           label="Store"
-          to="/store"
+          to="/products/categories"
         />
         <q-route-tab
           v-if="authStore.isAuthenticated"
