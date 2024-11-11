@@ -1,11 +1,16 @@
 <template>
   <q-drawer
-    behavior="desktop"
+    :model-value="drawerOpen"
+    behavior="mobile"
     bordered
-    show-if-above
+    overlay
     side="left"
+    @update:model-value="$emit('drawerChange', $event)"
   >
-    <q-list>
+    <q-list
+      dense
+      padding
+    >
       <q-item
         v-for="category in categoriesData"
         :key="category.name"
@@ -19,6 +24,11 @@
 </template>
 
 <script lang="ts" setup>
+defineProps<{ drawerOpen: boolean }>()
+defineEmits<{
+  (e: 'drawerChange', drawerOpen: boolean): void
+}>()
+
 const productsStore = useProductsStore()
 const { data: categoriesData } = await useLazyAsyncData<Category[]>(
   'categories',
