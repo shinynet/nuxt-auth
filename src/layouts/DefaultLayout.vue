@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh lpR fFf">
+  <q-layout view="lHh lpR fFf">
     <q-header
       class="bg-primary text-white"
       height-hint="98"
@@ -32,30 +32,30 @@
         />
       </q-toolbar>
 
-      <q-tabs align="center">
-        <q-route-tab
-          label="Home"
-          to="/"
-        />
-        <q-route-tab
-          label="Store"
-          to="/products/categories"
-        />
-        <q-route-tab
-          v-if="authStore.isAuthenticated"
-          label="Store Admin"
-          to="/store/admin"
-        />
-      </q-tabs>
+      <router-view
+        name="toolbar"
+        @toggle-drawer="toggleDrawer"
+      />
     </q-header>
 
+    <router-view
+      :drawer-open="drawerOpen"
+      name="drawer"
+      @drawer-change="drawerOpen = $event"
+    />
+
     <q-page-container>
-      <slot />
+      <router-view />
     </q-page-container>
   </q-layout>
 </template>
 
 <script lang="ts" setup>
+const drawerOpen = ref(false)
+const toggleDrawer = () => {
+  drawerOpen.value = !drawerOpen.value
+}
+
 const authStore = useAuthStore()
 const { isAuthenticated, user } = storeToRefs(authStore)
 const logout = () => {

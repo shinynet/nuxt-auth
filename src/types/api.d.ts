@@ -14,7 +14,6 @@ declare global {
   }
 
   interface Query {
-    category?: string
     limit: number
     skip: number
   }
