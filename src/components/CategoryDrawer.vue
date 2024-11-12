@@ -1,25 +1,16 @@
 <template>
   <q-drawer
     :model-value="drawerOpen"
-    behavior="mobile"
-    bordered
-    class="bg-grey-4"
-    overlay
-    side="left"
+    :width="drawerWidth"
+    class="bg-grey-6"
+    show-if-above
     @update:model-value="$emit('drawerChange', $event)"
   >
-    <div class="bg-primary text-grey-4 q-pa-sm row items-center justify-between">
-      <h2 class="text-subtitle1">
-        Product Categories
-      </h2>
-      <q-btn
-        class="q-mr-sm"
-        flat
-        icon="close"
-        round
-        @click="$emit('drawerChange', false)"
-      />
-    </div>
+    <div
+      v-if="$q.screen.lt.md"
+      class="bg-primary"
+      style="height: 100px"
+    />
     <q-list
       dense
       padding
@@ -37,8 +28,12 @@
 </template>
 
 <script lang="ts" setup>
+import { Screen } from 'quasar'
+
 defineProps<{ drawerOpen: boolean }>()
 defineEmits<{ (e: 'drawerChange', drawerOpen: boolean): void }>()
+
+const drawerWidth = computed(() => Screen.lt.md ? 300 : 200)
 
 const productsStore = useProductsStore()
 const { data: categoriesData } = await useLazyAsyncData<Category[]>(

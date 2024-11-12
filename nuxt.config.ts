@@ -57,6 +57,7 @@ export default defineNuxtConfig({
   quasar: {
     sassVariables: '~/assets/css/quasar.variables.scss',
     quietSassWarnings: true,
+    plugins: ['Screen'],
   },
 
 })

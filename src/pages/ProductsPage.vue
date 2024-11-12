@@ -1,12 +1,14 @@
 <template>
-  <q-page padding>
-    <h1>{{ category }}</h1>
-    <product-card
-      v-for="product in products"
-      :key="product.id"
-      :="product"
-      class="q-mb-md"
-    />
+  <q-page>
+    <div class="row q-gutter-xs flex-center">
+      <product-card
+        v-for="product in products"
+        :key="product.id"
+        :="product"
+        class="card q-mb-md"
+      />
+    </div>
+
     <footer class="q-pa-lg flex flex-center">
       <q-pagination
         :max="pageCount"
@@ -71,13 +73,18 @@ const {
     watch: [productsQuery],
   },
 )
-console.log('productsData', productsData.value)
 const products = computed(() => productsData.value?.products ?? [])
 
 const total = computed(() => productsData.value?.total ?? 0)
 const pageCount = computed(() => Math.ceil(total.value / limit))
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.card {
+  flex: 0 1 250px;
+  @media (max-width: $breakpoint-xs-max) {
+    flex: 1 0 100%;
+  }
 
+}
 </style>

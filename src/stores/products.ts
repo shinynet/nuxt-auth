@@ -1,10 +1,10 @@
 export const useProductsStore = defineStore('products', () => {
+  /* Products */
   const products = ref<ProductsResponse[]>([])
   const fetchProducts = (
-    category: string,
     query: Query,
   ) => $fetch<ProductsResponse>(
-    `/api/products/categories/${category}`,
+    `/api/products`,
     {
       query,
       onResponse: ({ response }) => {

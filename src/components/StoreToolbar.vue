@@ -16,7 +16,7 @@
         dark
         dense
         filled
-        label="Search Store"
+        label="Search Products"
         square
       >
         <template #after>

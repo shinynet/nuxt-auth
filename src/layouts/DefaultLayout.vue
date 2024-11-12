@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh lpR fFf">
+  <q-layout view="hHh lpR fFf">
     <q-header
       :height-hint="headerHeightHint"
       class="header text-grey-4"
