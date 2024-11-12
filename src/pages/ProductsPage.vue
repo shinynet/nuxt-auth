@@ -1,41 +1,34 @@
 <template>
-  <h1>{{ category }}</h1>
-  <template v-if="productsStatus === 'pending'">
-    <product-skeleton-card
-      v-for="i in 10"
-      :key="i"
+  <q-page padding>
+    <h1>{{ category }}</h1>
+    <product-card
+      v-for="product in products"
+      :key="product.id"
+      :="product"
       class="q-mb-md"
     />
-  </template>
+    <footer class="q-pa-lg flex flex-center">
+      <q-pagination
+        :max="pageCount"
+        :max-pages="6"
+        :model-value="page"
+        boundary-numbers
+        @update:model-value="handlePageChange"
+      />
+    </footer>
 
-  <product-card
-    v-for="product in products"
-    v-else
-    :key="product.id"
-    :="product"
-    class="q-mb-md"
-  />
-  <footer class="q-pa-lg flex flex-center">
-    <q-pagination
-      :max="pageCount"
-      :max-pages="6"
-      :model-value="page"
-      boundary-numbers
-      @update:model-value="handlePageChange"
-    />
-  </footer>
-
-  <q-page-scroller
-    :offset="[18, 18]"
-    :scroll-offset="150"
-    position="bottom-right"
-  >
-    <q-btn
-      color="accent"
-      fab
-      icon="keyboard_arrow_up"
-    />
-  </q-page-scroller>
+    <q-page-scroller
+      :offset="[18, 18]"
+      :scroll-offset="150"
+      position="bottom-right"
+    >
+      <q-btn
+        color="accent"
+        fab
+        icon="keyboard_arrow_up"
+      />
+    </q-page-scroller>
+  </q-page>
 </template>
 
 <script lang="ts" setup>
@@ -72,15 +65,15 @@ const handlePageChange = (page: number) => {
 const storeStore = useProductsStore()
 const {
   data: productsData,
-  status: productsStatus,
 } = await useLazyAsyncData<ProductsResponse>(
   'products',
   () => storeStore.fetchProducts(category, productsQuery.value), {
     watch: [productsQuery],
   },
 )
-
+console.log('productsData', productsData.value)
 const products = computed(() => productsData.value?.products ?? [])
+
 const total = computed(() => productsData.value?.total ?? 0)
 const pageCount = computed(() => Math.ceil(total.value / limit))
 </script>

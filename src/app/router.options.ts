@@ -4,8 +4,8 @@ export default {
   // https://router.vuejs.org/api/interfaces/routeroptions.html#routes
   routes: () => [
     {
-      path: '/',
-      alias: ['/store', '/products'],
+      path: '/products',
+      alias: '/',
       props: { headerHeightHint: 100 },
       component: () => import('../layouts/DefaultLayout.vue'),
       children: [{

@@ -3,10 +3,23 @@
     :model-value="drawerOpen"
     behavior="mobile"
     bordered
+    class="bg-grey-4"
     overlay
     side="left"
     @update:model-value="$emit('drawerChange', $event)"
   >
+    <div class="bg-primary text-grey-4 q-pa-sm row items-center justify-between">
+      <h2 class="text-subtitle1">
+        Product Categories
+      </h2>
+      <q-btn
+        class="q-mr-sm"
+        flat
+        icon="close"
+        round
+        @click="$emit('drawerChange', false)"
+      />
+    </div>
     <q-list
       dense
       padding
@@ -25,9 +38,7 @@
 
 <script lang="ts" setup>
 defineProps<{ drawerOpen: boolean }>()
-defineEmits<{
-  (e: 'drawerChange', drawerOpen: boolean): void
-}>()
+defineEmits<{ (e: 'drawerChange', drawerOpen: boolean): void }>()
 
 const productsStore = useProductsStore()
 const { data: categoriesData } = await useLazyAsyncData<Category[]>(
@@ -35,7 +46,3 @@ const { data: categoriesData } = await useLazyAsyncData<Category[]>(
   () => productsStore.fetchCategories(),
 )
 </script>
-
-<style scoped>
-
-</style>

@@ -18,6 +18,16 @@ export default defineNuxtConfig({
 
   compatibilityDate: '2024-04-03',
 
+  nitro: {
+    handlers: [
+      {
+        route: '/api/products',
+        handler: '~/server/products.ts',
+        method: 'get',
+      },
+    ],
+  },
+
   vite: {
     css: {
       preprocessorOptions: {
