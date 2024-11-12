@@ -6,6 +6,7 @@ export default {
     {
       path: '/',
       alias: ['/store', '/products'],
+      props: { headerHeightHint: 100 },
       component: () => import('../layouts/DefaultLayout.vue'),
       children: [{
         name: 'home',
@@ -21,6 +22,7 @@ export default {
     {
       path: '/login',
       component: () => import('../layouts/DefaultLayout.vue'),
+      props: { headerHeightHint: 50 },
       children: [{
         name: 'login',
         path: '',

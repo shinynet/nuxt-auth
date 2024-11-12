@@ -1,6 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@nuxt/eslint', '@pinia/nuxt', 'nuxt-quasar-ui'],
+  modules: [
+    '@nuxt/eslint',
+    '@pinia/nuxt',
+    'nuxt-quasar-ui',
+  ],
 
   devtools: { enabled: true },
 
@@ -19,7 +23,7 @@ export default defineNuxtConfig({
       preprocessorOptions: {
         sass: {
           // suppresses deprecations warnings
-          silenceDeprecations: ['import', 'global-builtin', 'legacy-js-api'],
+          silenceDeprecations: ['legacy-js-api'],
         },
       },
     },
@@ -41,7 +45,8 @@ export default defineNuxtConfig({
   },
 
   quasar: {
-    sassVariables: true,
+    sassVariables: '~/assets/css/quasar.variables.scss',
+    quietSassWarnings: true,
   },
 
 })

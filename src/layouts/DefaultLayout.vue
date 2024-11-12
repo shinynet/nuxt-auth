@@ -1,8 +1,8 @@
 <template>
   <q-layout view="lHh lpR fFf">
     <q-header
+      :height-hint="headerHeightHint"
       class="header text-grey-4"
-      height-hint="100"
       reveal
     >
       <q-toolbar>
@@ -51,6 +51,8 @@
 </template>
 
 <script lang="ts" setup>
+defineProps<{ headerHeightHint: number }>()
+
 const drawerOpen = ref(false)
 const toggleDrawer = () => {
   drawerOpen.value = !drawerOpen.value
@@ -66,6 +68,6 @@ const logout = () => {
 
 <style lang="scss" scoped>
 .header {
-  background: linear-gradient(45deg, #2C3E50 25%, #2980B9 75%)
+  background: linear-gradient(45deg, $primary 25%, $secondary 75%);
 }
 </style>
