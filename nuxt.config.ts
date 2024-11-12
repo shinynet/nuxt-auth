@@ -4,6 +4,8 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
 
+  css: ['~/assets/css/styles.scss'],
+
   runtimeConfig: {
     apiUrl: process.env.API_URL || 'https://dummyjson.com',
   },
@@ -13,8 +15,17 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
 
   vite: {
+    css: {
+      preprocessorOptions: {
+        sass: {
+          // suppresses deprecations warnings
+          silenceDeprecations: ['import', 'global-builtin', 'legacy-js-api'],
+        },
+      },
+    },
     vue: {
       script: {
+        // makes types globally available in .vue files
         globalTypeFiles: [
           './src/types/index.d.ts',
           './src/types/api.d.ts',
@@ -28,4 +39,9 @@ export default defineNuxtConfig({
       stylistic: true,
     },
   },
+
+  quasar: {
+    sassVariables: true,
+  },
+
 })
