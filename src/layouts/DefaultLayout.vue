@@ -3,14 +3,12 @@
     <q-header
       :height-hint="headerHeightHint"
       class="header text-grey-4"
-      reveal
-    >
+      reveal>
       <q-toolbar>
         <q-toolbar-title>
           <q-avatar
             font-size="36px"
-            icon="private_connectivity"
-          />
+            icon="private_connectivity"/>
           Authentication
         </q-toolbar-title>
 
@@ -19,30 +17,26 @@
           :first-name="user.firstName"
           :image="user.image"
           :last-name="user.lastName"
-          @logout="logout"
-        />
+          @logout="logout"/>
 
         <icon-btn
           v-else
           icon="login"
-          to="/login"
-        />
+          to="/login"/>
       </q-toolbar>
 
       <router-view
         name="toolbar"
-        @toggle-drawer="toggleDrawer"
-      />
+        @toggle-drawer="toggleDrawer"/>
     </q-header>
 
     <router-view
       :drawer-open="drawerOpen"
       name="drawer"
-      @drawer-change="drawerOpen = $event"
-    />
+      @drawer-change="drawerOpen = $event"/>
 
     <q-page-container>
-      <router-view />
+      <router-view/>
     </q-page-container>
   </q-layout>
 </template>

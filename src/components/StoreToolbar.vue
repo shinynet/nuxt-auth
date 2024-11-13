@@ -2,8 +2,7 @@
   <q-toolbar>
     <icon-btn
       icon="menu"
-      @click="$emit('toggle-drawer')"
-    />
+      @click="$emit('toggle-drawer')"/>
     <q-toolbar-title>
       <q-input
         v-model="search"
@@ -14,14 +13,12 @@
         dense
         filled
         label="Search Products"
-        square
-      >
+        square>
         <template #after>
           <icon-btn
             icon="search"
             padding="24px 4px"
-            square
-          />
+            square/>
         </template>
       </q-input>
     </q-toolbar-title>
@@ -29,15 +26,13 @@
       class="gt-xs"
       flat
       icon="star"
-      label="Highest Rated"
-    />
+      label="Highest Rated"/>
     <q-btn
       class="gt-xs"
       flat
       icon="inventory"
-      label="Low Inventory"
-    />
-    <icon-btn icon="shopping_cart" />
+      label="Low Inventory"/>
+    <icon-btn icon="shopping_cart"/>
   </q-toolbar>
 </template>
 

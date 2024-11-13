@@ -5,31 +5,26 @@
     class="bg-grey-4 hide-scrollbar"
     show-if-above
     @on-layout="handleLayoutChange"
-    @update:model-value="handleModelValueChange"
-  >
+    @update:model-value="handleChange">
     <header
       v-if="!drawerInLayout"
-      class="header"
-    >
+      class="header">
       <h2 class="text-subtitle1">
         Categories
       </h2>
       <icon-btn
         icon="close"
-        @click="handleClose"
-      />
+        @click="handleChange(false)"/>
     </header>
 
     <q-list
       dense
-      padding
-    >
+      padding>
       <q-item
         v-for="category in categoriesData"
         :key="category.name"
         v-ripple
-        clickable
-      >
+        clickable>
         <q-item-section>{{ category.name }}</q-item-section>
       </q-item>
     </q-list>
@@ -39,14 +34,12 @@
 <script lang="ts" setup>
 defineProps<{ drawerOpen: boolean }>()
 
+/* Event handling */
 const emit = defineEmits<{
   (e: 'drawerChange', drawerOpen: boolean): void
 }>()
-const handleModelValueChange = (drawerOpen: boolean) => {
+const handleChange = (drawerOpen: boolean) => {
   emit('drawerChange', drawerOpen)
-}
-const handleClose = () => {
-  emit('drawerChange', false)
 }
 
 /* Responsiveness */
@@ -60,7 +53,9 @@ const drawerWidth = computed(
 
 /* Categories fetching */
 const productsStore = useProductsStore()
-const { data: categoriesData } = await useLazyAsyncData<Category[]>(
+const {
+  data: categoriesData,
+} = await useLazyAsyncData<Category[]>(
   'categories', () => productsStore.fetchCategories(),
 )
 </script>

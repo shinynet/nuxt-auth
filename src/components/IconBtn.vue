@@ -2,8 +2,7 @@
   <q-btn
     dense
     flat
-    round
-  >
-    <slot />
+    round>
+    <slot/>
   </q-btn>
 </template>

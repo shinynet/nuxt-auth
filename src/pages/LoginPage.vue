@@ -2,8 +2,7 @@
   <q-page padding>
     <q-banner
       v-if="error"
-      class="bg-negative text-white"
-    >
+      class="bg-negative text-white">
       A user with that username and password was not found.
     </q-banner>
 
@@ -15,12 +14,10 @@
       class="q-gutter-md"
       spellcheck="false"
       style="max-width: 500px; margin: auto"
-      @submit="handleSubmit"
-    >
+      @submit="handleSubmit">
       <q-card
         bordered
-        flat
-      >
+        flat>
         <q-card-section>
           <h1 class="text-h6">
             Login
@@ -33,10 +30,9 @@
             :rules="usernameRules"
             filled
             label="Username"
-            lazy-rules
-          >
+            lazy-rules>
             <template #before>
-              <q-icon name="person" />
+              <q-icon name="person"/>
             </template>
           </q-input>
 
@@ -46,10 +42,9 @@
             filled
             label="Password"
             lazy-rules
-            type="password"
-          >
+            type="password">
             <template #before>
-              <q-icon name="key" />
+              <q-icon name="key"/>
             </template>
           </q-input>
         </q-card-section>
@@ -59,8 +54,7 @@
             color="primary"
             icon-right="login"
             label="Login"
-            type="submit"
-          />
+            type="submit"/>
         </q-card-actions>
       </q-card>
     </q-form>

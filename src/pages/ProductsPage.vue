@@ -5,8 +5,7 @@
         v-for="product in products"
         :key="product.id"
         :="product"
-        class="card q-mb-md"
-      />
+        class="card q-mb-md"/>
     </div>
 
     <footer class="q-pa-lg flex flex-center">
@@ -15,20 +14,17 @@
         :max-pages="6"
         :model-value="page"
         boundary-numbers
-        @update:model-value="handlePageChange"
-      />
+        @update:model-value="handlePageChange"/>
     </footer>
 
     <q-page-scroller
       :offset="[18, 18]"
       :scroll-offset="150"
-      position="bottom-right"
-    >
+      position="bottom-right">
       <q-btn
         color="accent"
         fab
-        icon="keyboard_arrow_up"
-      />
+        icon="keyboard_arrow_up"/>
     </q-page-scroller>
   </q-page>
 </template>

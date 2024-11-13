@@ -3,8 +3,7 @@
     <q-avatar>
       <img
         :src="image"
-        alt="user avatar"
-      >
+        alt="user avatar">
     </q-avatar>
     <q-menu>
       <div class="row no-wrap q-pa-md">
@@ -17,15 +16,13 @@
         <q-separator
           class="q-mx-lg"
           inset
-          vertical
-        />
+          vertical/>
 
         <div class="column items-center">
           <q-avatar size="72px">
             <img
               :src="image"
-              alt="user avatar"
-            >
+              alt="user avatar">
           </q-avatar>
 
           <div class="text-subtitle1 q-mt-md q-mb-xs">
@@ -40,8 +37,7 @@
             label="Logout"
             push
             size="sm"
-            @click="$emit('logout')"
-          />
+            @click="$emit('logout')"/>
         </div>
       </div>
     </q-menu>
