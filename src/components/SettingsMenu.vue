@@ -1,8 +1,5 @@
 <template>
-  <q-btn
-    flat
-    round
-  >
+  <icon-btn>
     <q-avatar>
       <img
         :src="image"
@@ -48,7 +45,7 @@
         </div>
       </div>
     </q-menu>
-  </q-btn>
+  </icon-btn>
 </template>
 
 <script lang="ts" setup>

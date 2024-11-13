@@ -22,12 +22,9 @@
           @logout="logout"
         />
 
-        <q-btn
+        <icon-btn
           v-else
-          dense
-          flat
           icon="login"
-          round
           to="/login"
         />
       </q-toolbar>

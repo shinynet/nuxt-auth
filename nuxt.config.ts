@@ -8,7 +8,10 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
 
-  css: ['~/assets/css/styles.scss'],
+  css: [
+    '~/assets/css/styles.scss',
+    '~/assets/css/quasar.extend.library.scss',
+  ],
 
   runtimeConfig: {
     apiUrl: process.env.API_URL || 'https://dummyjson.com',

@@ -1,10 +1,7 @@
 <template>
   <q-toolbar>
-    <q-btn
-      dense
-      flat
+    <icon-btn
       icon="menu"
-      round
       @click="$emit('toggle-drawer')"
     />
     <q-toolbar-title>
@@ -20,11 +17,10 @@
         square
       >
         <template #after>
-          <q-btn
-            dense
-            flat
+          <icon-btn
             icon="search"
             padding="24px 4px"
+            square
           />
         </template>
       </q-input>
@@ -41,11 +37,7 @@
       icon="inventory"
       label="Low Inventory"
     />
-    <q-btn
-      flat
-      icon="shopping_cart"
-      round
-    />
+    <icon-btn icon="shopping_cart" />
   </q-toolbar>
 </template>
 
