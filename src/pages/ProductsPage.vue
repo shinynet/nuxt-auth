@@ -30,33 +30,16 @@
 </template>
 
 <script lang="ts" setup>
-definePageMeta({
-  title: 'Store',
-  path: '/products/categories/:category?',
-  props: ({ params, query }) => ({
-    category: params.category,
-    page: Number(query.page ?? 0),
-  }),
-})
-
-const { category = '', page = 1 } = defineProps<{
-  category?: string
-  page?: number
-}>()
-
 /* Pagination */
 const limit = 10
-const productsQuery = computed<Query>(() => ({
+const route = useRoute()
+const page = computed(() => route.query.page ? Number(route.query.page) : 1)
+const query = computed(() => ({
+  skip: page.value * limit - limit,
   limit,
-  skip: (page - 1) * limit,
 }))
-
 const handlePageChange = (page: number) => {
-  navigateTo({
-    path: '/products/categories',
-    query: { page },
-  })
-  window.scrollTo(0, 0)
+  navigateTo({ query: { page } })
 }
 
 /* Products fetching */
@@ -65,14 +48,13 @@ const {
   data: productsData,
 } = await useLazyAsyncData<ProductsResponse>(
   'products',
-  () => storeStore.fetchProducts(category, productsQuery.value), {
-    watch: [productsQuery],
+  () => storeStore.fetchProducts({ query: { ...query.value } }), {
+    watch: [query],
   },
 )
 const products = computed(() => productsData.value?.products ?? [])
-
 const total = computed(() => productsData.value?.total ?? 0)
-const pageCount = computed(() => Math.ceil(total.value / limit))
+const pageCount = computed(() => Math.ceil(total.value / query.value.limit))
 </script>
 
 <style lang="scss" scoped>

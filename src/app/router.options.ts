@@ -37,4 +37,8 @@ export default {
     //   component: () => import('../pages/ErrorNotFound.vue')
     // }
   ],
+  scrollBehavior() {
+    // always scroll to top
+    return { top: 0 }
+  },
 } satisfies RouterConfig
