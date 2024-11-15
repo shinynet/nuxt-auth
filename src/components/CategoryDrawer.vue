@@ -24,6 +24,7 @@
         v-for="category in categoriesData"
         :key="category.name"
         v-ripple
+        :to="`/products/category/${category.slug}`"
         clickable>
         <q-item-section>{{ category.name }}</q-item-section>
       </q-item>

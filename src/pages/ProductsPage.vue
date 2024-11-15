@@ -30,9 +30,10 @@
 </template>
 
 <script lang="ts" setup>
+const route = useRoute()
+
 /* Pagination */
 const limit = 10
-const route = useRoute()
 const page = computed(() => route.query.page ? Number(route.query.page) : 1)
 const query = computed(() => ({
   skip: page.value * limit - limit,

@@ -4,19 +4,30 @@ export default {
   // https://router.vuejs.org/api/interfaces/routeroptions.html#routes
   routes: () => [
     {
-      path: '/products',
-      alias: '/',
+      path: '/',
       props: { headerHeightHint: 100 },
       component: () => import('../layouts/DefaultLayout.vue'),
-      children: [{
-        name: 'home',
-        path: '',
-        components: {
-          default: () => import('../pages/ProductsPage.vue'),
-          toolbar: () => import('../components/StoreToolbar.vue'),
-          drawer: () => import('../components/CategoryDrawer.vue'),
+      children: [
+        {
+          name: 'home',
+          path: 'products',
+          alias: '/',
+          components: {
+            default: () => import('../pages/ProductsPage.vue'),
+            toolbar: () => import('../components/StoreToolbar.vue'),
+            drawer: () => import('../components/CategoryDrawer.vue'),
+          },
         },
-      }],
+        {
+          path: 'products/category/:category',
+          alias: '/:category',
+          components: {
+            default: () => import('../pages/ProductsPage.vue'),
+            toolbar: () => import('../components/StoreToolbar.vue'),
+            drawer: () => import('../components/CategoryDrawer.vue'),
+          },
+        },
+      ],
     },
 
     {
