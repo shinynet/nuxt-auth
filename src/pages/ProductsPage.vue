@@ -1,6 +1,19 @@
 <template>
   <q-page>
-    <h1>{{ category }}</h1>
+    <q-breadcrumbs class="text-brown">
+      <template #separator>
+        <q-icon
+          color="primary"
+          name="chevron_right"
+          size="1.5em"/>
+      </template>
+
+      <q-breadcrumbs-el
+        icon="store"
+        label="Home"/>
+      <q-breadcrumbs-el
+        :label="storeStore.getCategory(category)?.name"/>
+    </q-breadcrumbs>
     <div class="row q-gutter-xs flex-center">
       <product-card
         v-for="product in products"

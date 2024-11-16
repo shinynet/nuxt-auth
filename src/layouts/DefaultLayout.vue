@@ -36,7 +36,7 @@
       @drawer-change="drawerOpen = $event"/>
 
     <q-page-container>
-      <router-view/>
+      <router-view class="bg-grey-4"/>
     </q-page-container>
   </q-layout>
 </template>
