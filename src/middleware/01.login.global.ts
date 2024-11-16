@@ -4,7 +4,7 @@ export default defineNuxtRouteMiddleware(async () => {
   const authStore = useAuthStore()
 
   const { execute: login } = useAsyncData(() => authStore.fetchUser(), {
-    immediate: false,
+    immediate: false
   })
 
   const token = useCookie('token').value

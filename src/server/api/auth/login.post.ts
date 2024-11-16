@@ -6,6 +6,6 @@ export default defineEventHandler(async (event) => {
     method: 'POST',
     body,
     credentials: 'include',
-    baseURL: apiUrl,
+    baseURL: apiUrl
   })
 })

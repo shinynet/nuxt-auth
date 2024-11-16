@@ -50,15 +50,15 @@ const handleLayoutChange = (layout: boolean) => {
   drawerInLayout.value = layout
 }
 const drawerWidth = computed(
-  () => drawerInLayout.value ? 200 : 300,
+  () => drawerInLayout.value ? 200 : 300
 )
 
 /* Categories fetching */
 const productsStore = useProductsStore()
 const {
-  data: categoriesData,
+  data: categoriesData
 } = await useLazyAsyncData<Category[]>(
-  'categories', () => productsStore.fetchCategories(),
+  'categories', () => productsStore.fetchCategories()
 )
 </script>
 

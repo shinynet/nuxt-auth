@@ -15,8 +15,8 @@ export default {
           components: {
             default: () => import('../pages/ProductsPage.vue'),
             toolbar: () => import('../components/StoreToolbar.vue'),
-            drawer: () => import('../components/CategoryDrawer.vue'),
-          },
+            drawer: () => import('../components/CategoryDrawer.vue')
+          }
         },
         {
           path: 'products/category/:category',
@@ -25,10 +25,10 @@ export default {
           components: {
             default: () => import('../pages/ProductsPage.vue'),
             toolbar: () => import('../components/StoreToolbar.vue'),
-            drawer: () => import('../components/CategoryDrawer.vue'),
-          },
-        },
-      ],
+            drawer: () => import('../components/CategoryDrawer.vue')
+          }
+        }
+      ]
     },
 
     {
@@ -38,9 +38,9 @@ export default {
       children: [{
         name: 'login',
         path: '',
-        component: () => import('../pages/LoginPage.vue'),
-      }],
-    },
+        component: () => import('../pages/LoginPage.vue')
+      }]
+    }
 
     // Always leave this as last one,
     // but you can also remove it
@@ -52,5 +52,5 @@ export default {
   scrollBehavior() {
     // always scroll to top
     return { top: 0 }
-  },
+  }
 } satisfies RouterConfig

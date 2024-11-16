@@ -5,9 +5,9 @@ export default defineEventHandler(async (event) => {
   return $fetch<User>('/auth/me', {
     method: 'get',
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`
     },
     credentials: 'include',
-    baseURL: apiUrl,
+    baseURL: apiUrl
   })
 })

@@ -3,18 +3,18 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
     '@pinia/nuxt',
-    'nuxt-quasar-ui',
+    'nuxt-quasar-ui'
   ],
 
   devtools: { enabled: true },
 
   css: [
     '~/assets/css/styles.scss',
-    '~/assets/css/quasar.extend.library.scss',
+    '~/assets/css/quasar.extend.library.scss'
   ],
 
   runtimeConfig: {
-    apiUrl: process.env.API_URL || 'https://dummyjson.com',
+    apiUrl: process.env.API_URL || 'https://dummyjson.com'
   },
 
   srcDir: 'src/',
@@ -26,31 +26,31 @@ export default defineNuxtConfig({
       preprocessorOptions: {
         sass: {
           // suppresses deprecations warnings
-          silenceDeprecations: ['legacy-js-api'],
-        },
-      },
+          silenceDeprecations: ['legacy-js-api']
+        }
+      }
     },
     vue: {
       script: {
         // makes types globally available in .vue files
         globalTypeFiles: [
           './src/types/index.d.ts',
-          './src/types/api.d.ts',
-        ],
-      },
-    },
+          './src/types/api.d.ts'
+        ]
+      }
+    }
   },
 
   eslint: {
     config: {
-      stylistic: true,
-    },
+      stylistic: true
+    }
   },
 
   quasar: {
     sassVariables: '~/assets/css/quasar.variables.scss',
     quietSassWarnings: true,
-    plugins: ['Screen'],
-  },
+    plugins: ['Screen']
+  }
 
 })

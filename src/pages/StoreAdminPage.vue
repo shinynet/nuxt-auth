@@ -10,7 +10,7 @@
 definePageMeta({
   title: 'Store Admin',
   path: '/store/admin',
-  auth: true,
+  auth: true
 })
 </script>
 

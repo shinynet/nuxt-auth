@@ -65,18 +65,18 @@
 definePageMeta({
   title: 'Login',
   path: '/login',
-  middleware: ['redirect'],
+  middleware: ['redirect']
 })
 
 const username = ref('')
 const usernameRules = [
-  (value: string) => validateRequired(value) || 'Username is required',
+  (value: string) => validateRequired(value) || 'Username is required'
 ]
 
 const password = ref('')
 const passwordRules = [
   (value: string) => validateRequired(value) || 'Password is required',
-  (value: string) => validateMinLength(6)(value) || 'Password must be at least 6 characters',
+  (value: string) => validateMinLength(6)(value) || 'Password must be at least 6 characters'
 ]
 
 const authStore = useAuthStore()
@@ -92,8 +92,8 @@ const { execute: login, error } = useAsyncData(
       throw error
     }),
   {
-    immediate: false,
-  },
+    immediate: false
+  }
 )
 
 const handleSubmit = () => {

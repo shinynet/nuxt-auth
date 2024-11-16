@@ -4,8 +4,8 @@ export default defineCachedEventHandler(async (event) => {
 
   return $fetch<ProductsResponse>('/products', {
     baseURL: apiUrl,
-    query,
+    query
   })
 }, {
-  maxAge: 3_600, // 1 hour
+  maxAge: 3_600 // 1 hour
 })

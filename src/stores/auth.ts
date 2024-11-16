@@ -7,7 +7,7 @@ export const useAuthStore = defineStore('auth', () => {
     method: 'POST',
     body: {
       username,
-      password,
+      password
     },
     onResponseError: () => {
       isAuthenticated.value = false
@@ -24,12 +24,12 @@ export const useAuthStore = defineStore('auth', () => {
         email,
         gender,
         image,
-        accessToken,
+        accessToken
       } = response._data
 
       const currentDate = new Date()
       useCookie('token', {
-        expires: new Date(currentDate.setMinutes(currentDate.getMinutes() + 60)),
+        expires: new Date(currentDate.setMinutes(currentDate.getMinutes() + 60))
       }).value = accessToken
 
       user.value = {
@@ -39,16 +39,16 @@ export const useAuthStore = defineStore('auth', () => {
         lastName,
         email,
         gender,
-        image,
+        image
       }
 
       isAuthenticated.value = true
-    },
+    }
   })
 
   const logout = () => {
     useCookie('token', {
-      expires: new Date(1970, 0, 1),
+      expires: new Date(1970, 0, 1)
     }).value = null
     isAuthenticated.value = false
     user.value = undefined
@@ -66,7 +66,7 @@ export const useAuthStore = defineStore('auth', () => {
         lastName,
         email,
         gender,
-        image,
+        image
       } = response._data
 
       user.value = {
@@ -76,14 +76,14 @@ export const useAuthStore = defineStore('auth', () => {
         lastName,
         email,
         gender,
-        image,
+        image
       }
 
       isAuthenticated.value = true
     },
     onResponseError: () => {
       logout()
-    },
+    }
   })
 
   return {
@@ -92,6 +92,6 @@ export const useAuthStore = defineStore('auth', () => {
     redirect,
     fetchUser,
     login,
-    logout,
+    logout
   }
 })

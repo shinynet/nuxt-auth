@@ -59,14 +59,14 @@ const storeStore = useProductsStore()
 
 const query = computed<PageQuery>(() => ({
   skip: skip.value,
-  limit: limit.value,
+  limit: limit.value
 }))
 const { data: productsData } = await useLazyAsyncData<ProductsResponse>(
   'products',
   () => storeStore.fetchProducts(category, { query: query.value }), {
     deep: false,
-    watch: [() => category, skip, limit],
-  },
+    watch: [() => category, skip, limit]
+  }
 )
 
 const products = computed(() => productsData.value?.products ?? [])

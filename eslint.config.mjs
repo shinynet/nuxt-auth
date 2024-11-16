@@ -3,23 +3,29 @@ import withNuxt from './.nuxt/eslint.config.mjs'
 
 export default withNuxt(
   // Your custom configs here
-).override('nuxt/vue/rules', {
-  rules: {
-    'vue/html-closing-bracket-newline': [
-      'error',
-      {
-        multiline: 'never',
-        selfClosingTag: {
+)
+  .override('nuxt/vue/rules', {
+    rules: {
+      'vue/html-closing-bracket-newline': [
+        'error',
+        {
           multiline: 'never',
-        },
-      },
-    ],
+          selfClosingTag: {
+            multiline: 'never'
+          }
+        }
+      ],
 
-    'vue/html-closing-bracket-spacing': ['error', {
-      selfClosingTag: 'never',
-    }],
-  },
-})
+      'vue/html-closing-bracket-spacing': ['error', {
+        selfClosingTag: 'never'
+      }]
+    }
+  })
+  .override('nuxt/stylistic', {
+    rules: {
+      '@stylistic/comma-dangle': ['error', 'never']
+    }
+  })
 
 /* configs
 gitignore,

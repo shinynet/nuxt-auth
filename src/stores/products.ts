@@ -15,8 +15,8 @@ export const useProductsStore = defineStore('products', () => {
     {
       onResponse: ({ response }) => {
         if (response.ok) categories.value = response._data
-      },
-    },
+      }
+    }
   )
 
   const getCategory = (slug: string) =>
@@ -26,6 +26,6 @@ export const useProductsStore = defineStore('products', () => {
     fetchProducts,
     fetchCategories,
     getCategory,
-    categories,
+    categories
   }
 })
