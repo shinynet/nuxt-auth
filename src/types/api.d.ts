@@ -13,7 +13,7 @@ declare global {
     refreshToken: string
   }
 
-  interface Query {
+  interface PageQuery {
     limit: number
     skip: number
   }

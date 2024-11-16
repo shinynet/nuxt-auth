@@ -2,7 +2,8 @@
   <q-drawer
     :model-value="drawerOpen"
     :width="drawerWidth"
-    class="bg-grey-4 hide-scrollbar"
+    bordered
+    class="bg-primary text-grey-4 hide-scrollbar"
     show-if-above
     @on-layout="handleLayoutChange"
     @update:model-value="handleChange">

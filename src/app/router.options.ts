@@ -21,6 +21,7 @@ export default {
         {
           path: 'products/category/:category',
           alias: '/:category',
+          props: true,
           components: {
             default: () => import('../pages/ProductsPage.vue'),
             toolbar: () => import('../components/StoreToolbar.vue'),

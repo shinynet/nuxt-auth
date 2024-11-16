@@ -1,5 +1,6 @@
 <template>
   <q-page>
+    <h1>{{ category }}</h1>
     <div class="row q-gutter-xs flex-center">
       <product-card
         v-for="product in products"
@@ -8,7 +9,9 @@
         class="card q-mb-md"/>
     </div>
 
-    <footer class="q-pa-lg flex flex-center">
+    <footer
+      v-if="pageCount > 1"
+      class="q-pa-lg flex flex-center">
       <q-pagination
         :max="pageCount"
         :max-pages="6"
@@ -30,6 +33,8 @@
 </template>
 
 <script lang="ts" setup>
+const { category } = defineProps<{ category: string }>()
+
 const { page, skip, limit } = usePaginate()
 
 const handlePageChange = (page: number) => {
@@ -39,15 +44,15 @@ const handlePageChange = (page: number) => {
 /* Products fetching */
 const storeStore = useProductsStore()
 
-const query = computed(() => ({
+const query = computed<PageQuery>(() => ({
   skip: skip.value,
   limit: limit.value,
 }))
 const { data: productsData } = await useLazyAsyncData<ProductsResponse>(
   'products',
-  () => storeStore.fetchProducts({ query: query.value }), {
+  () => storeStore.fetchProducts(category, { query: query.value }), {
     deep: false,
-    watch: [skip, limit],
+    watch: [() => category, skip, limit],
   },
 )
 
