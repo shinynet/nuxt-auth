@@ -10,7 +10,7 @@
 
       <q-breadcrumbs-el
         icon="store"
-        label="Home"/>
+        label="Store"/>
       <q-breadcrumbs-el
         :label="storeStore.getCategory(category)?.name"/>
     </q-breadcrumbs>

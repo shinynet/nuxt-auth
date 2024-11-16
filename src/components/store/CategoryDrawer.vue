@@ -63,7 +63,7 @@ const {
 </script>
 
 <style lang="scss" scoped>
-@import "~/assets/css/quasar.extend.library.scss";
+@import "assets/css/quasar.extend.library";
 
 .header {
   @extend .row;

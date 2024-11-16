@@ -6,6 +6,13 @@ export default defineNuxtConfig({
     'nuxt-quasar-ui'
   ],
 
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false
+    }
+  ],
+
   devtools: { enabled: true },
 
   css: [
