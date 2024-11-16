@@ -30,32 +30,30 @@
 </template>
 
 <script lang="ts" setup>
-const route = useRoute()
+const { page, skip, limit } = usePaginate()
 
-/* Pagination */
-const limit = 10
-const page = computed(() => route.query.page ? Number(route.query.page) : 1)
-const query = computed(() => ({
-  skip: page.value * limit - limit,
-  limit,
-}))
 const handlePageChange = (page: number) => {
   navigateTo({ query: { page } })
 }
 
 /* Products fetching */
 const storeStore = useProductsStore()
-const {
-  data: productsData,
-} = await useLazyAsyncData<ProductsResponse>(
+
+const query = computed(() => ({
+  skip: skip.value,
+  limit: limit.value,
+}))
+const { data: productsData } = await useLazyAsyncData<ProductsResponse>(
   'products',
-  () => storeStore.fetchProducts({ query: { ...query.value } }), {
-    watch: [query],
+  () => storeStore.fetchProducts({ query: query.value }), {
+    deep: false,
+    watch: [skip, limit],
   },
 )
+
 const products = computed(() => productsData.value?.products ?? [])
 const total = computed(() => productsData.value?.total ?? 0)
-const pageCount = computed(() => Math.ceil(total.value / query.value.limit))
+const pageCount = computed(() => Math.ceil(total.value / limit.value))
 </script>
 
 <style lang="scss" scoped>
@@ -64,6 +62,5 @@ const pageCount = computed(() => Math.ceil(total.value / query.value.limit))
   @media (max-width: $breakpoint-xs-max) {
     flex: 1 0 100%;
   }
-
 }
 </style>
