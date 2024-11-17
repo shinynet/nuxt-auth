@@ -1,4 +1,4 @@
-export default defineCachedEventHandler(async (event) => {
+export default defineEventHandler(async (event) => {
   const { apiUrl } = useRuntimeConfig(event)
   const query = getQuery(event)
 
@@ -6,6 +6,4 @@ export default defineCachedEventHandler(async (event) => {
     baseURL: apiUrl,
     query
   })
-}, {
-  maxAge: 3_600 // 1 hour
 })

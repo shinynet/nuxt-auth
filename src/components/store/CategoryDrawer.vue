@@ -22,10 +22,18 @@
       dense
       padding>
       <q-item
+        v-ripple
+        active-class="text-accent"
+        clickable
+        to="/products">
+        <q-item-section>All Categories</q-item-section>
+      </q-item>
+      <q-item
         v-for="category in categoriesData"
         :key="category.name"
         v-ripple
         :to="`/products/category/${category.slug}`"
+        active-class="text-accent"
         clickable>
         <q-item-section>{{ category.name }}</q-item-section>
       </q-item>

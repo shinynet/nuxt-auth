@@ -1,47 +1,35 @@
 <template>
   <q-page>
-    <q-breadcrumbs class="text-brown">
-      <template #separator>
-        <q-icon
-          color="primary"
-          name="chevron_right"
-          size="1.5em"/>
-      </template>
+    <q-pull-to-refresh @refresh="refresh">
+      <category-breadcrumbs :category/>
+      {{ productsStatus }}
+      {{ productsStatus === 'pending' && 'Loading products' }}
+      <!--      {{ productsStatus === 'error' && 'Error loading products' }} -->
+      <!--      {{ productsStatus === 'success' && `Showing ${skip.value + 1} - ${skip.value + products.value.length} of ${total.value}` }} -->
+      <div v-if="productsStatus === 'pending'">
+        Loading...
+      </div>
+      <div class="row q-gutter-xs flex-center">
+        <product-card
+          v-for="product in products"
+          :key="product.id"
+          :="product"
+          class="card q-mb-md"/>
+      </div>
 
-      <q-breadcrumbs-el
-        icon="store"
-        label="Store"/>
-      <q-breadcrumbs-el
-        :label="storeStore.getCategory(category)?.name"/>
-    </q-breadcrumbs>
-    <div class="row q-gutter-xs flex-center">
-      <product-card
-        v-for="product in products"
-        :key="product.id"
-        :="product"
-        class="card q-mb-md"/>
-    </div>
+      <footer
+        v-if="pageCount > 1"
+        class="q-pa-lg flex flex-center">
+        <q-pagination
+          :max="pageCount"
+          :max-pages="6"
+          :model-value="page"
+          boundary-numbers
+          @update:model-value="handlePageChange"/>
+      </footer>
 
-    <footer
-      v-if="pageCount > 1"
-      class="q-pa-lg flex flex-center">
-      <q-pagination
-        :max="pageCount"
-        :max-pages="6"
-        :model-value="page"
-        boundary-numbers
-        @update:model-value="handlePageChange"/>
-    </footer>
-
-    <q-page-scroller
-      :offset="[18, 18]"
-      :scroll-offset="150"
-      position="bottom-right">
-      <q-btn
-        color="accent"
-        fab
-        icon="keyboard_arrow_up"/>
-    </q-page-scroller>
+      <page-scroller/>
+    </q-pull-to-refresh>
   </q-page>
 </template>
 
@@ -61,7 +49,12 @@ const query = computed<PageQuery>(() => ({
   skip: skip.value,
   limit: limit.value
 }))
-const { data: productsData } = await useLazyAsyncData<ProductsResponse>(
+
+const {
+  data: productsData,
+  refresh: refreshProducts,
+  status: productsStatus
+} = await useLazyAsyncData<ProductsResponse>(
   'products',
   () => storeStore.fetchProducts(category, { query: query.value }), {
     deep: false,
@@ -72,6 +65,11 @@ const { data: productsData } = await useLazyAsyncData<ProductsResponse>(
 const products = computed(() => productsData.value?.products ?? [])
 const total = computed(() => productsData.value?.total ?? 0)
 const pageCount = computed(() => Math.ceil(total.value / limit.value))
+
+const refresh = (done: () => void) => {
+  refreshProducts()
+  done()
+}
 </script>
 
 <style lang="scss" scoped>
