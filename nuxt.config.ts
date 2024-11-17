@@ -56,7 +56,10 @@ export default defineNuxtConfig({
 
   quasar: {
     sassVariables: '~/assets/css/quasar.variables.scss',
-    quietSassWarnings: true
+    quietSassWarnings: true,
+    extras: {
+      font: 'roboto-font'
+    }
   }
 
 })

@@ -2,8 +2,9 @@ export const useProductsStore = defineStore('products', () => {
   const categories = ref<Category[]>()
 
   const fetchProducts = (
-    category: string,
-    { query }: { query: PageQuery }) => {
+    { query }: { query: PageQuery },
+    category?: string
+  ) => {
     const url = category
       ? `/api/products/category/${category}`
       : '/api/products'

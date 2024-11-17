@@ -1,40 +1,46 @@
 <template>
   <q-page>
-    <q-pull-to-refresh @refresh="refresh">
+    <!-- Error Banner -->
+    <q-banner
+      v-if="productsError"
+      class="bg-negative text-white"
+      inline-actions>
+      Error Loading Products
+    </q-banner>
+
+    <div class="row justify-between q-pa-sm bg-grey-5">
       <category-breadcrumbs :category/>
-      {{ productsStatus }}
-      {{ productsStatus === 'pending' && 'Loading products' }}
-      <!--      {{ productsStatus === 'error' && 'Error loading products' }} -->
-      <!--      {{ productsStatus === 'success' && `Showing ${skip.value + 1} - ${skip.value + products.value.length} of ${total.value}` }} -->
-      <div v-if="productsStatus === 'pending'">
-        Loading...
-      </div>
-      <div class="row q-gutter-xs flex-center">
-        <product-card
-          v-for="product in products"
-          :key="product.id"
-          :="product"
-          class="card q-mb-md"/>
-      </div>
+      <span v-if="productsStatus === 'success'">
+        <span class="gt-xs">Showing</span>
+        {{ skip + 1 }} - {{ skip + products.length }} of {{ total }}
+      </span>
+    </div>
 
-      <footer
-        v-if="pageCount > 1"
-        class="q-pa-lg flex flex-center">
-        <q-pagination
-          :max="pageCount"
-          :max-pages="6"
-          :model-value="page"
-          boundary-numbers
-          @update:model-value="handlePageChange"/>
-      </footer>
+    <div class="row q-gutter-xs flex-center">
+      <product-card
+        v-for="product in products"
+        :key="product.id"
+        :="product"
+        class="card q-mb-md"/>
+    </div>
 
-      <page-scroller/>
-    </q-pull-to-refresh>
+    <footer
+      v-if="pageCount > 1"
+      class="q-pa-lg flex flex-center">
+      <q-pagination
+        :max="pageCount"
+        :max-pages="6"
+        :model-value="page"
+        boundary-numbers
+        @update:model-value="handlePageChange"/>
+    </footer>
+
+    <page-scroller/>
   </q-page>
 </template>
 
 <script lang="ts" setup>
-const { category } = defineProps<{ category: string }>()
+const { category } = defineProps<{ category?: string }>()
 
 const { page, skip, limit } = usePaginate()
 
@@ -52,11 +58,11 @@ const query = computed<PageQuery>(() => ({
 
 const {
   data: productsData,
-  refresh: refreshProducts,
+  error: productsError,
   status: productsStatus
 } = await useLazyAsyncData<ProductsResponse>(
   'products',
-  () => storeStore.fetchProducts(category, { query: query.value }), {
+  () => storeStore.fetchProducts({ query: query.value }, category), {
     deep: false,
     watch: [() => category, skip, limit]
   }
@@ -65,11 +71,6 @@ const {
 const products = computed(() => productsData.value?.products ?? [])
 const total = computed(() => productsData.value?.total ?? 0)
 const pageCount = computed(() => Math.ceil(total.value / limit.value))
-
-const refresh = (done: () => void) => {
-  refreshProducts()
-  done()
-}
 </script>
 
 <style lang="scss" scoped>

@@ -1,5 +1,5 @@
 <template>
-  <q-breadcrumbs class="q-pa-xs">
+  <q-breadcrumbs>
     <template #separator>
       <q-icon
         color="primary"
@@ -17,13 +17,15 @@
 </template>
 
 <script lang="ts" setup>
-const { category } = defineProps<{ category: string }>()
+const { category } = defineProps<{ category?: string }>()
 
 const productsStore = useProductsStore()
 
-const categoryName = computed(
-  () => productsStore.getCategory(category)?.name ?? 'All'
-)
+const categoryName = computed(() => {
+  if (!category) return 'All'
+  const c = productsStore.getCategory(category)
+  return c ? c.name : 'All'
+})
 </script>
 
 <style scoped>
