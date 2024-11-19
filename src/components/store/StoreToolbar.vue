@@ -35,7 +35,13 @@
       flat
       icon="inventory"
       label="Low Inventory"/>
-    <icon-btn icon="shopping_cart"/>
+    <icon-btn icon="shopping_cart">
+      <q-badge
+        color="accent"
+        floating>
+        4
+      </q-badge>
+    </icon-btn>
   </q-toolbar>
 </template>
 

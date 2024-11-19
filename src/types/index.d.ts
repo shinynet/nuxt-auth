@@ -56,6 +56,10 @@ declare global {
     slug: string
     url: string
   }
+
+  interface Cart {
+    id: number
+  }
 }
 
 export {}

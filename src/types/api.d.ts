@@ -8,6 +8,13 @@ declare global {
     limit: number
   }
 
+  interface CartsResponse {
+    carts: Cart[]
+    total: number
+    skip: number
+    limit: number
+  }
+
   interface LoginResponse extends User {
     accessToken: string
     refreshToken: string
