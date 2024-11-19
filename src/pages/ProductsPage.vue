@@ -42,16 +42,24 @@
 <script lang="ts" setup>
 const { category } = defineProps<{ category?: string }>()
 
+const route = useRoute()
+
 const { page, skip, limit } = usePaginate()
 
 const handlePageChange = (page: number) => {
-  navigateTo({ query: { page } })
+  navigateTo({
+    query: {
+      ...route.query,
+      page
+    }
+  })
 }
 
 /* Products fetching */
-const storeStore = useProductsStore()
+const productsStore = useProductsStore()
 
 const query = computed<PageQuery>(() => ({
+  ...route.query,
   skip: skip.value,
   limit: limit.value
 }))
@@ -62,9 +70,14 @@ const {
   status: productsStatus
 } = await useLazyAsyncData<ProductsResponse>(
   'products',
-  () => storeStore.fetchProducts({ query: query.value }, category), {
+  () => category
+    ? productsStore.fetchProductsByCategory(category, query.value)
+    : route.query.q
+      ? productsStore.searchProducts(query.value)
+      : productsStore.fetchProducts(query.value)
+  , {
     deep: false,
-    watch: [() => category, skip, limit]
+    watch: [() => category, skip, limit, () => route.query.q]
   }
 )
 

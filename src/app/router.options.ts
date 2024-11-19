@@ -11,7 +11,7 @@ export default {
         {
           name: 'home',
           path: 'products',
-          alias: '/',
+          alias: ['products/search', '/'],
           components: {
             default: () => import('../pages/ProductsPage.vue'),
             toolbar: () => import('../components/store/StoreToolbar.vue'),

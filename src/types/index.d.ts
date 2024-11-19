@@ -31,7 +31,7 @@ declare global {
     }
     warrantyInformation: string
     shippingInformation: string
-    availabilityStatus: string
+    availabilityStatus: 'In Stock' | 'Low Stock' | 'Out of Stock'
     reviews: {
       rating: number
       comment: string

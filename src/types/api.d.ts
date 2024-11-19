@@ -14,8 +14,9 @@ declare global {
   }
 
   interface PageQuery {
-    limit: number
-    skip: number
+    limit?: number
+    skip?: number
+    search?: string
   }
 }
 

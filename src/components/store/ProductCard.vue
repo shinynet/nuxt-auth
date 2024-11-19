@@ -8,7 +8,18 @@
         :src="thumbnail"
         class="col-5"
         loading="lazy"
-        width="100%"/>
+        width="100%">
+        <div
+          v-if="availabilityStatus === 'Low Stock'"
+          class="absolute-bottom text-subtitle1 text-center">
+          {{ availabilityStatus }}
+        </div>
+        <div
+          v-if="availabilityStatus === 'Out of Stock'"
+          class="absolute-full text-subtitle2 flex flex-center">
+          {{ availabilityStatus }}
+        </div>
+      </q-img>
     </div>
 
     <q-card-section>

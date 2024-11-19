@@ -5,7 +5,7 @@
       @click="$emit('toggle-drawer')"/>
     <q-toolbar-title>
       <q-input
-        v-model="search"
+        v-model="searchInput"
         borderless
         class="fullwidth"
         clearable
@@ -13,12 +13,15 @@
         dense
         filled
         label="Search Products"
-        square>
+        square
+        @clear="clearSearch"
+        @keydown.enter="search">
         <template #after>
           <icon-btn
             icon="search"
             padding="24px 4px"
-            square/>
+            square
+            @search="search"/>
         </template>
       </q-input>
     </q-toolbar-title>
@@ -41,9 +44,16 @@ defineEmits<{
   (e: 'toggle-drawer'): void
 }>()
 
-const search = ref('')
+const searchInput = ref('')
+
+const search = () => {
+  navigateTo({
+    path: '/products/search',
+    query: { q: searchInput.value }
+  })
+}
+
+const clearSearch = () => {
+  navigateTo('/products')
+}
 </script>
-
-<style scoped>
-
-</style>
