@@ -40,11 +40,11 @@
 </template>
 
 <script lang="ts" setup>
-const { category } = defineProps<{ category?: string }>()
+const {category} = defineProps<{ category?: string }>()
 
 const route = useRoute()
 
-const { page, skip, limit } = usePaginate()
+const {page, skip, limit} = usePaginate()
 
 const handlePageChange = (page: number) => {
   navigateTo({

@@ -23,6 +23,8 @@
     "vue": "latest"
   },
   "devDependencies": {
-    "sass": "^1.62.1"
+    "@nuxtjs/stylelint-module": "^5.2.0",
+    "sass": "^1.62.1",
+    "stylelint": "^16.10.0"
   }
 }

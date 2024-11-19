@@ -3,7 +3,8 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
     '@pinia/nuxt',
-    'nuxt-quasar-ui'
+    'nuxt-quasar-ui',
+    '@nuxtjs/stylelint-module'
   ],
 
   components: [
