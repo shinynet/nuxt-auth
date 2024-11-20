@@ -57,6 +57,12 @@ declare global {
     url: string
   }
 
+  interface ProductSort {
+    label: string
+    sortBy: 'price' | 'rating'
+    order: 'asc' | 'desc'
+  }
+
   interface Cart {
     id: number
   }

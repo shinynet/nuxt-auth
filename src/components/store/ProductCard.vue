@@ -6,9 +6,10 @@
     <div class="bg-grey-3">
       <q-img
         :src="thumbnail"
-        class="col-5"
+        class="col-5 cursor-pointer"
         loading="lazy"
-        width="100%">
+        width="100%"
+        @click="$emit('click', id)">
         <div
           v-if="availabilityStatus === 'Low Stock'"
           class="absolute-bottom text-subtitle1 text-center">
@@ -24,21 +25,31 @@
 
     <q-card-section>
       <header
-        class="text-subtitle1 ellipsis-2-lines"
-        style="height: 56px">
+        class="text-subtitle1 cursor-pointer"
+        style="height: 56px"
+        @click="$emit('click', id)">
         {{ title }}
       </header>
-      <q-rating
-        :model-value="rating"
-        color="orange"
-        icon="star"
-        readonly
-        size="1em"/>
+      <div>
+        <q-rating
+          :model-value="rating"
+          class="q-mr-sm"
+          color="orange"
+          icon="star"
+          readonly
+          size="1em"/>
+        {{ formatNumber(reviews.length) }}
+        <q-tooltip>
+          {{ rating.toString() }} out of 5
+        </q-tooltip>
+      </div>
 
-      <div class="text-weight-bold text-h6">
+      <div class="text-weight-bold text-h6 text-primary">
         {{ formatPrice(price) }}
       </div>
-      <div>{{ shippingInformation }}</div>
+      <div class="text-caption">
+        {{ shippingInformation }}
+      </div>
     </q-card-section>
 
     <q-card-actions>
@@ -54,8 +65,7 @@
 
 <script lang="ts" setup>
 defineProps<Product>()
+defineEmits<{
+  (e: 'click', productId: number): void
+}>()
 </script>
-
-<style scoped>
-
-</style>

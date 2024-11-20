@@ -8,13 +8,15 @@
       Error Loading Products
     </q-banner>
 
-    <div class="row justify-between q-pa-sm bg-grey-5">
-      <category-breadcrumbs :category/>
-      <span v-if="productsStatus === 'success'">
-        <span class="gt-xs">Showing</span>
-        {{ skip + 1 }} - {{ skip + products.length }} of {{ total }}
-      </span>
-    </div>
+    <q-toolbar class="text-caption">
+      <category-breadcrumbs
+        :category
+        class="text-uppercase"/>
+      <q-space/>
+      <span class="gt-xs">Showing&nbsp;</span>
+      {{ skip + 1 }} - {{ skip + products.length }} of {{ total }}
+      <products-sort-select/>
+    </q-toolbar>
 
     <div class="row q-gutter-xs flex-center">
       <product-card
@@ -40,19 +42,16 @@
 </template>
 
 <script lang="ts" setup>
-const {category} = defineProps<{ category?: string }>()
+import ProductsSortSelect from '~/components/store/ProductsSortSelect.vue'
+
+const { category } = defineProps<{ category?: string }>()
 
 const route = useRoute()
 
-const {page, skip, limit} = usePaginate()
+const { page, skip, limit } = usePaginate()
 
 const handlePageChange = (page: number) => {
-  navigateTo({
-    query: {
-      ...route.query,
-      page
-    }
-  })
+  navigateTo({ query: { ...route.query, page } })
 }
 
 /* Products fetching */
