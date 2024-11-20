@@ -8,13 +8,16 @@
       Error Loading Products
     </q-banner>
 
-    <q-toolbar class="text-caption">
+    <q-toolbar
+      class="text-caption q-pr-none">
       <category-breadcrumbs
         :category
         class="text-uppercase"/>
       <q-space/>
       <span class="gt-xs">Showing&nbsp;</span>
-      {{ skip + 1 }} - {{ skip + products.length }} of {{ total }}
+      <span class="gt-xs q-mx-sm">
+        {{ skip + 1 }} - {{ skip + products.length }} of {{ total }}
+      </span>
       <products-sort-select/>
     </q-toolbar>
 

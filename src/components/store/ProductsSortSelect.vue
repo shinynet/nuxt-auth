@@ -3,18 +3,17 @@
     v-model="model"
     :option-value="optionValue"
     :options="options"
+    borderless
     dense
     filled
     hide-bottom-space
-    label="Sort by:"
+    options-dense
+    options-selected-class="bg-grey-7 text-grey-1"
+    popup-content-class="bg-grey-4"
     square>
-    <!--    <template #option="{ opt }"> -->
-    <!--      <q-item dense> -->
-    <!--        <q-item-label caption> -->
-    <!--          {{ opt.label }} -->
-    <!--        </q-item-label> -->
-    <!--      </q-item> -->
-    <!--    </template> -->
+    <template #selected>
+      <span class="text-caption">Sort by: {{ model.label }}</span>
+    </template>
   </q-select>
 </template>
 

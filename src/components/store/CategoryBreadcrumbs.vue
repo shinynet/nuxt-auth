@@ -1,5 +1,5 @@
 <template>
-  <q-breadcrumbs>
+  <q-breadcrumbs gutter="none">
     <template #separator>
       <q-icon
         color="primary"
