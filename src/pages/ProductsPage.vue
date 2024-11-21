@@ -33,11 +33,10 @@
       v-if="pageCount > 1"
       class="q-pa-lg flex flex-center">
       <q-pagination
+        v-model="page"
         :max="pageCount"
         :max-pages="6"
-        :model-value="page"
-        boundary-numbers
-        @update:model-value="handlePageChange"/>
+        boundary-numbers/>
     </footer>
 
     <page-scroller/>
@@ -45,17 +44,13 @@
 </template>
 
 <script lang="ts" setup>
-import ProductsSortSelect from '~/components/store/ProductsSortSelect.vue'
+const { category } = defineProps<{
+  category?: string
+}>()
 
-const { category } = defineProps<{ category?: string }>()
-
-const route = useRoute()
-
-const { page, skip, limit } = usePaginate()
-
-const handlePageChange = (page: number) => {
-  navigateTo({ query: { ...route.query, page } })
-}
+/* Pagination */
+const page = ref(1)
+const { skip, limit, route } = usePagination(page)
 
 /* Products fetching */
 const productsStore = useProductsStore()
@@ -68,8 +63,7 @@ const query = computed<PageQuery>(() => ({
 
 const {
   data: productsData,
-  error: productsError,
-  status: productsStatus
+  error: productsError
 } = await useLazyAsyncData<ProductsResponse>(
   'products',
   () => category
