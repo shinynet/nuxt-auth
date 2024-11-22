@@ -1,27 +1,27 @@
-export const usePagination = (page: Ref<number>) => {
+export const usePagination = () => {
   const route = useRoute()
 
+  const skip = computed(
+    () => Number(route.query.skip ?? 0)
+  )
   const limit = computed(
     () => Number(route.query.limit ?? 10)
   )
 
-  const skip = computed(
-    () => (page.value - 1) * limit.value
-  )
+  const page = ref(1)
 
-  watch(page, () => {
+  const updatePage = (newPage: number) => {
+    page.value = newPage
+    const skip = (newPage - 1) * limit.value
     navigateTo({
-      query: {
-        ...route.query,
-        limit: limit.value,
-        skip: skip.value
-      }
+      path: route.path,
+      query: { ...route.query, skip, limit: limit.value }
     })
-  })
-
-  return {
-    limit,
-    skip,
-    route
   }
+
+  watch(route, () => {
+    page.value = Math.floor(skip.value / limit.value) + 1
+  }, { immediate: true })
+
+  return { page, updatePage, skip, limit }
 }

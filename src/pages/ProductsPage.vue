@@ -21,6 +21,7 @@
       <products-sort-select/>
     </q-toolbar>
 
+    <!-- Products -->
     <div class="row q-gutter-xs flex-center">
       <product-card
         v-for="product in products"
@@ -33,10 +34,11 @@
       v-if="pageCount > 1"
       class="q-pa-lg flex flex-center">
       <q-pagination
-        v-model="page"
         :max="pageCount"
         :max-pages="6"
-        boundary-numbers/>
+        :model-value="page"
+        boundary-numbers
+        @update:model-value="updatePage"/>
     </footer>
 
     <page-scroller/>
@@ -44,36 +46,22 @@
 </template>
 
 <script lang="ts" setup>
-const { category } = defineProps<{
-  category?: string
-}>()
+const { category } = defineProps<{ category?: string }>()
 
 /* Pagination */
-const page = ref(1)
-const { skip, limit, route } = usePagination(page)
+const { page, updatePage, skip, limit } = usePagination()
 
 /* Products fetching */
 const productsStore = useProductsStore()
-
-const query = computed<PageQuery>(() => ({
-  ...route.query,
-  skip: skip.value,
-  limit: limit.value
-}))
 
 const {
   data: productsData,
   error: productsError
 } = await useLazyAsyncData<ProductsResponse>(
   'products',
-  () => category
-    ? productsStore.fetchProductsByCategory(category, query.value)
-    : route.query.q
-      ? productsStore.searchProducts(query.value)
-      : productsStore.fetchProducts(query.value)
-  , {
-    deep: false,
-    watch: [() => category, skip, limit, () => route.query.q]
+  () => productsStore.fetchProducts(),
+  {
+    watch: [() => category, skip, limit]
   }
 )
 

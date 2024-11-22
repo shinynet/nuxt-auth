@@ -29,13 +29,13 @@
         <q-item-section>All Categories</q-item-section>
       </q-item>
       <q-item
-        v-for="category in categoriesData"
-        :key="category.name"
+        v-for="{ name, slug } in categoriesData"
+        :key="slug"
         v-ripple
-        :to="`/products/category/${category.slug}`"
+        :to="{ ...route, params: { category: slug } }"
         active-class="text-accent"
         clickable>
-        <q-item-section>{{ category.name }}</q-item-section>
+        <q-item-section>{{ name }}</q-item-section>
       </q-item>
     </q-list>
   </q-drawer>
@@ -43,6 +43,11 @@
 
 <script lang="ts" setup>
 defineProps<{ drawerOpen: boolean }>()
+
+const route = {
+  name: 'productsByCategory',
+  query: { skip: undefined, limit: undefined }
+}
 
 /* Event handling */
 const emit = defineEmits<{

@@ -1,20 +1,10 @@
 export const useProductsStore = defineStore('products', () => {
+  const route = useRoute()
   const categories = ref<Category[]>()
 
-  const fetchProducts = (query: PageQuery) => $fetch<ProductsResponse>(
-    '/api/products',
-    { query }
-  )
-
-  const fetchProductsByCategory = (category: string, query: PageQuery) =>
-    $fetch<ProductsResponse>(
-      `/api/products/category/${category}`,
-      { query }
-    )
-
-  const searchProducts = (query: PageQuery) => $fetch<ProductsResponse>(
-    `/api/products/search`,
-    { query }
+  const fetchProducts = () => $fetch<ProductsResponse>(
+    `/api${route.path}`,
+    { query: route.query }
   )
 
   const fetchCategories = () => $fetch<Category[]>(
@@ -31,8 +21,6 @@ export const useProductsStore = defineStore('products', () => {
 
   return {
     fetchProducts,
-    fetchProductsByCategory,
-    searchProducts,
     fetchCategories,
     getCategory,
     categories
