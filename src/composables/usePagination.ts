@@ -1,12 +1,5 @@
-export const usePagination = () => {
+export const usePagination = (limit: Ref<number>, skip: Ref<number>) => {
   const route = useRoute()
-
-  const skip = computed(
-    () => Number(route.query.skip ?? 0)
-  )
-  const limit = computed(
-    () => Number(route.query.limit ?? 10)
-  )
 
   const page = ref(1)
 
@@ -23,5 +16,5 @@ export const usePagination = () => {
     page.value = Math.floor(skip.value / limit.value) + 1
   }, { immediate: true })
 
-  return { page, updatePage, skip, limit }
+  return { page, updatePage }
 }

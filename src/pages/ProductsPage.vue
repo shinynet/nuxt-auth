@@ -1,6 +1,5 @@
 <template>
   <q-page>
-    <!-- Error Banner -->
     <q-banner
       v-if="productsError"
       class="bg-negative text-white"
@@ -21,7 +20,6 @@
       <products-sort-select/>
     </q-toolbar>
 
-    <!-- Products -->
     <div class="row q-gutter-xs flex-center">
       <product-card
         v-for="product in products"
@@ -48,10 +46,10 @@
 <script lang="ts" setup>
 const { category } = defineProps<{ category?: string }>()
 
-/* Pagination */
-const { page, updatePage, skip, limit } = usePagination()
+const { query, limit, skip } = useProductsQuery()
 
-/* Products fetching */
+const { page, updatePage } = usePagination(limit, skip)
+
 const productsStore = useProductsStore()
 
 const {
@@ -61,13 +59,19 @@ const {
   'products',
   () => productsStore.fetchProducts(),
   {
-    watch: [() => category, skip, limit]
+    watch: [() => category, query]
   }
 )
 
-const products = computed(() => productsData.value?.products ?? [])
-const total = computed(() => productsData.value?.total ?? 0)
-const pageCount = computed(() => Math.ceil(total.value / limit.value))
+const products = computed(
+  () => productsData.value?.products ?? []
+)
+const total = computed(
+  () => productsData.value?.total ?? 0
+)
+const pageCount = computed(
+  () => Math.ceil(total.value / limit.value)
+)
 </script>
 
 <style lang="scss" scoped>
