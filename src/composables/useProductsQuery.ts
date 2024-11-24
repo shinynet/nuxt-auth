@@ -31,5 +31,13 @@ export const useProductsQuery = () => {
     q: q.value
   }))
 
-  return { limit, skip, sortBy, order, q, query }
+  return {
+    limit,
+    skip,
+    sortBy,
+    order,
+    q,
+    query,
+    path: route.path
+  }
 }

@@ -1,10 +1,9 @@
 export const useProductsStore = defineStore('products', () => {
-  const route = useRoute()
-  const { query } = useProductsQuery()
+  const { query, path } = useProductsQuery()
   const categories = ref<Category[]>()
 
   const fetchProducts = () => $fetch<ProductsResponse>(
-    `/api${route.path}`,
+    `/api${path}`,
     { query: query.value }
   )
 

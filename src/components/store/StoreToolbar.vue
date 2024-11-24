@@ -21,7 +21,7 @@
             icon="search"
             padding="24px 4px"
             square
-            @search="search"/>
+            @click="search"/>
         </template>
       </q-input>
     </q-toolbar-title>
@@ -29,7 +29,8 @@
       class="gt-xs"
       flat
       icon="star"
-      label="Highest Rated"/>
+      label="Highest Rated"
+      @click="search"/>
     <q-btn
       class="gt-xs"
       flat
@@ -50,14 +51,17 @@ defineEmits<{
   (e: 'toggle-drawer'): void
 }>()
 
+const route = useRoute()
 const searchInput = ref('')
-
 const search = () => {
   navigateTo({
     path: '/products/search',
     query: { q: searchInput.value }
   })
 }
+watch(() => route.query.q, (q) => {
+  searchInput.value = q as string
+})
 
 const clearSearch = () => {
   navigateTo('/products')
