@@ -23,6 +23,8 @@ export const useProductsQuery = () => {
   const q = computed(
     () => route.query.q ? String(route.query.q) : undefined
   )
+  const path = computed(() => route.path)
+
   const query = computed(() => ({
     limit: limit.value,
     skip: skip.value,
@@ -38,6 +40,6 @@ export const useProductsQuery = () => {
     order,
     q,
     query,
-    path: route.path
+    path
   }
 }

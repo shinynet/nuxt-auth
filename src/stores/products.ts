@@ -3,7 +3,7 @@ export const useProductsStore = defineStore('products', () => {
   const categories = ref<Category[]>()
 
   const fetchProducts = () => $fetch<ProductsResponse>(
-    `/api${path}`,
+    `/api${path.value}`,
     { query: query.value }
   )
 

@@ -1,6 +1,6 @@
 <template>
   <q-select
-    v-model="model"
+    :model-value="selectedSort"
     :option-value="optionValue"
     :options="options"
     borderless
@@ -11,9 +11,10 @@
     options-dense
     options-selected-class="bg-primary text-grey-4"
     popup-content-class="bg-secondary"
-    square>
+    square
+    @update:model-value="updateSort">
     <template #selected>
-      <span>Sort by: {{ model.label }}</span>
+      <span>Sort by: {{ selectedSort.label }}</span>
     </template>
   </q-select>
 </template>
@@ -36,8 +37,27 @@ const options: ProductSort[] = [
     order: 'desc'
   }
 ]
-const model = ref(options[0])
+
+const { sortBy, order, path, q } = useProductsQuery()
+
+const selectedSort = computed(
+  () => options.find(
+    o => o.sortBy === sortBy.value
+      && o.order === order.value)
+    ?? options[0]
+)
 
 const optionValue = (option: ProductSort) =>
   `${option.sortBy}:${option.order}`
+
+const updateSort = (sortOption: ProductSort) => {
+  navigateTo({
+    path: path.value,
+    query: {
+      q: q.value,
+      sortBy: sortOption.sortBy,
+      order: sortOption.order
+    }
+  })
+}
 </script>

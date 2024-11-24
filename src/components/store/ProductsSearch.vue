@@ -1,6 +1,6 @@
 <template>
   <q-input
-    v-model="searchInput"
+    :model-value="q"
     borderless
     clearable
     dark
@@ -9,6 +9,7 @@
     label="Search Products"
     square
     @clear="clearSearch"
+    @update:model-value="handleModelChange"
     @keydown.enter="search">
     <template #append>
       <icon-btn
@@ -19,17 +20,20 @@
 </template>
 
 <script lang="ts" setup>
-const route = useRoute()
-const searchInput = ref('')
+const { q } = useProductsQuery()
+
+const searchTerm = ref(q.value)
+
+const handleModelChange = (value: string | number | null) => {
+  searchTerm.value = String(value)
+}
+
 const search = () => {
   navigateTo({
     path: '/products/search',
-    query: { q: searchInput.value }
+    query: { q: searchTerm.value }
   })
 }
-watch(() => route.query.q, (q) => {
-  searchInput.value = q as string
-})
 
 const clearSearch = () => {
   navigateTo('/products')
