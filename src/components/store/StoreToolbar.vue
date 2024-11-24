@@ -4,38 +4,9 @@
       icon="menu"
       @click="$emit('toggle-drawer')"/>
     <q-toolbar-title>
-      <q-input
-        v-model="searchInput"
-        borderless
-        class="fullwidth"
-        clearable
-        dark
-        dense
-        filled
-        label="Search Products"
-        square
-        @clear="clearSearch"
-        @keydown.enter="search">
-        <template #after>
-          <icon-btn
-            icon="search"
-            padding="24px 4px"
-            square
-            @click="search"/>
-        </template>
-      </q-input>
+      <products-search/>
     </q-toolbar-title>
-    <q-btn
-      class="gt-xs"
-      flat
-      icon="star"
-      label="Highest Rated"
-      @click="search"/>
-    <q-btn
-      class="gt-xs"
-      flat
-      icon="inventory"
-      label="Low Inventory"/>
+    <products-sort class="gt-xs"/>
     <icon-btn icon="shopping_cart">
       <q-badge
         color="accent"
@@ -47,23 +18,5 @@
 </template>
 
 <script lang="ts" setup>
-defineEmits<{
-  (e: 'toggle-drawer'): void
-}>()
-
-const route = useRoute()
-const searchInput = ref('')
-const search = () => {
-  navigateTo({
-    path: '/products/search',
-    query: { q: searchInput.value }
-  })
-}
-watch(() => route.query.q, (q) => {
-  searchInput.value = q as string
-})
-
-const clearSearch = () => {
-  navigateTo('/products')
-}
+defineEmits<{ (e: 'toggle-drawer'): void }>()
 </script>

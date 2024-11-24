@@ -17,7 +17,7 @@
       <span class="gt-xs q-mx-sm">
         {{ skip + 1 }} - {{ skip + products.length }} of {{ total }}
       </span>
-      <products-sort-select/>
+      <products-sort-select class="xs"/>
     </q-toolbar>
 
     <div class="row q-gutter-xs flex-center">
