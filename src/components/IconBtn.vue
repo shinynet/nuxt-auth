@@ -1,8 +1,8 @@
 <template>
-  <q-btn
-    dense
-    flat
-    round>
-    <slot/>
-  </q-btn>
+<q-btn
+  dense
+  flat
+  round>
+  <slot/>
+</q-btn>
 </template>

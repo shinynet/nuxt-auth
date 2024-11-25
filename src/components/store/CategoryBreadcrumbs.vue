@@ -1,19 +1,19 @@
 <template>
-  <q-breadcrumbs gutter="none">
-    <template #separator>
-      <q-icon
-        color="primary"
-        name="chevron_right"
-        size="1.5em"/>
-    </template>
+<q-breadcrumbs gutter="none">
+  <template #separator>
+    <q-icon
+      color="primary"
+      name="chevron_right"
+      size="1.5em"/>
+  </template>
 
-    <q-breadcrumbs-el
-      icon="store"
-      label="Store"
-      to="/products"/>
-    <q-breadcrumbs-el
-      :label="categoryName"/>
-  </q-breadcrumbs>
+  <q-breadcrumbs-el
+    icon="store"
+    label="Store"
+    to="/products"/>
+  <q-breadcrumbs-el
+    :label="categoryName"/>
+</q-breadcrumbs>
 </template>
 
 <script lang="ts" setup>

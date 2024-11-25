@@ -1,44 +1,44 @@
 <template>
-  <q-layout view="hHh lpR fFf">
-    <q-header
-      :height-hint="headerHeightHint"
-      class="header text-grey-4"
-      reveal>
-      <q-toolbar>
-        <q-toolbar-title>
-          <q-avatar
-            font-size="36px"
-            icon="private_connectivity"/>
-          Authentication
-        </q-toolbar-title>
+<q-layout view="hHh lpR fFf">
+  <q-header
+    :height-hint="headerHeightHint"
+    class="header text-grey-4"
+    reveal>
+    <q-toolbar>
+      <q-toolbar-title>
+        <q-avatar
+          font-size="36px"
+          icon="private_connectivity"/>
+        Authentication
+      </q-toolbar-title>
 
-        <settings-menu
-          v-if="isAuthenticated && user"
-          :first-name="user.firstName"
-          :image="user.image"
-          :last-name="user.lastName"
-          @logout="logout"/>
+      <settings-menu
+        v-if="isAuthenticated && user"
+        :first-name="user.firstName"
+        :image="user.image"
+        :last-name="user.lastName"
+        @logout="logout"/>
 
-        <icon-btn
-          v-else
-          icon="login"
-          to="/login"/>
-      </q-toolbar>
-
-      <router-view
-        name="toolbar"
-        @toggle-drawer="toggleDrawer"/>
-    </q-header>
+      <icon-btn
+        v-else
+        icon="login"
+        to="/login"/>
+    </q-toolbar>
 
     <router-view
-      :drawer-open="drawerOpen"
-      name="drawer"
-      @drawer-change="drawerOpen = $event"/>
+      name="toolbar"
+      @toggle-drawer="toggleDrawer"/>
+  </q-header>
 
-    <q-page-container>
-      <router-view class="bg-grey-4"/>
-    </q-page-container>
-  </q-layout>
+  <router-view
+    :drawer-open="drawerOpen"
+    name="drawer"
+    @drawer-change="drawerOpen = $event"/>
+
+  <q-page-container>
+    <router-view class="bg-grey-4"/>
+  </q-page-container>
+</q-layout>
 </template>
 
 <script lang="ts" setup>

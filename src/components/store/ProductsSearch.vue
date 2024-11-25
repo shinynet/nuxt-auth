@@ -1,22 +1,22 @@
 <template>
-  <q-input
-    :model-value="q"
-    borderless
-    clearable
-    dark
-    dense
-    filled
-    label="Search Products"
-    square
-    @clear="clearSearch"
-    @update:model-value="handleModelChange"
-    @keydown.enter="search">
-    <template #append>
-      <icon-btn
-        icon="search"
-        @click="search"/>
-    </template>
-  </q-input>
+<q-input
+  :model-value="q"
+  borderless
+  clearable
+  dark
+  dense
+  filled
+  label="Search Products"
+  square
+  @clear="clearSearch"
+  @update:model-value="handleModelChange"
+  @keydown.enter="search">
+  <template #append>
+    <icon-btn
+      icon="search"
+      @click="search"/>
+  </template>
+</q-input>
 </template>
 
 <script lang="ts" setup>

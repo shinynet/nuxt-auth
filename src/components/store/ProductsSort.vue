@@ -1,22 +1,22 @@
 <template>
-  <q-select
-    :model-value="selectedSort"
-    :option-value="optionValue"
-    :options="options"
-    borderless
-    dark
-    dense
-    filled
-    hide-bottom-space
-    options-dense
-    options-selected-class="bg-primary text-grey-4"
-    popup-content-class="bg-secondary"
-    square
-    @update:model-value="updateSort">
-    <template #selected>
-      <span>Sort by: {{ selectedSort.label }}</span>
-    </template>
-  </q-select>
+<q-select
+  :model-value="selectedSort"
+  :option-value="optionValue"
+  :options="options"
+  borderless
+  dark
+  dense
+  filled
+  hide-bottom-space
+  options-dense
+  options-selected-class="bg-primary text-grey-4"
+  popup-content-class="bg-secondary"
+  square
+  @update:model-value="updateSort">
+  <template #selected>
+    <span>Sort by: {{ selectedSort.label }}</span>
+  </template>
+</q-select>
 </template>
 
 <script lang="ts" setup>
