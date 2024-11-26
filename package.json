@@ -12,11 +12,11 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxt/eslint": "^0.6.1",
-    "@pinia/nuxt": "^0.6.1",
+    "@nuxt/eslint": "^0.7.2",
+    "@pinia/nuxt": "^0.7.0",
     "nuxt": "^3.14.1592",
     "nuxt-quasar-ui": "^2.1.7",
-    "pinia": "^2.2.5",
+    "pinia": "^2.2.6",
     "vue-router": "latest"
   },
   "overrides": {
