@@ -32,8 +32,10 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         sass: {
-          // suppresses deprecations warnings
-          silenceDeprecations: ['legacy-js-api']
+          silenceDeprecations: ['import', 'global-builtin', 'legacy-js-api']
+        },
+        scss: {
+          silenceDeprecations: ['import', 'global-builtin', 'legacy-js-api']
         }
       }
     },
