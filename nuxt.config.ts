@@ -3,7 +3,8 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
     '@pinia/nuxt',
-    'nuxt-quasar-ui'
+    'nuxt-quasar-ui',
+    '@nuxtjs/i18n'
   ],
 
   components: [
@@ -54,6 +55,14 @@ export default defineNuxtConfig({
     config: {
       stylistic: true
     }
+  },
+
+  i18n: {
+    locales: [
+      { code: 'en', language: 'en-US' }
+    ],
+    defaultLocale: 'en',
+    vueI18n: './i18n.config.ts'
   },
 
   quasar: {
