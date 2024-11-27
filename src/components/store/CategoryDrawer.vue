@@ -11,7 +11,7 @@
     v-if="!drawerInLayout"
     class="header">
     <h2 class="text-subtitle1">
-      Categories
+      {{ $t('categories') }}
     </h2>
     <icon-btn
       icon="close"
@@ -26,7 +26,7 @@
       active-class="text-accent"
       clickable
       to="/products">
-      <q-item-section>All Categories</q-item-section>
+      <q-item-section>{{ $t('all_categories') }}</q-item-section>
     </q-item>
     <q-item
       v-for="{ name, slug } in categoriesData"

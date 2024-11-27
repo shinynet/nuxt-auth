@@ -38,14 +38,19 @@
         icon="star"
         readonly
         size="1em"/>
-      {{ formatNumber(reviews.length) }}
+      {{ $n(reviews.length, 'decimal') }}
       <q-tooltip>
-        {{ rating.toString() }} out of 5
+        {{
+          $t('rating_out_of', {
+            rating: $n(rating, 'decimal'),
+            max: $n(5, 'decimal'),
+          })
+        }}
       </q-tooltip>
     </div>
 
     <div class="text-weight-bold text-h6 text-primary">
-      {{ formatPrice(price) }}
+      {{ $n(price, 'currency') }}
     </div>
     <div class="text-caption">
       {{ shippingInformation }}
@@ -57,7 +62,7 @@
       class="bg-accent text-white"
       flat
       size="sm">
-      Add to Cart
+      {{ $t('add_to_cart') }}
     </q-btn>
   </q-card-actions>
 </q-card>
