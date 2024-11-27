@@ -1,12 +1,12 @@
 <template>
 <q-input
+  :label="$t('search_products')"
   :model-value="q"
   borderless
   clearable
   dark
   dense
   filled
-  label="Search Products"
   square
   @clear="clearSearch"
   @update:model-value="handleModelChange"
@@ -14,7 +14,11 @@
   <template #append>
     <icon-btn
       icon="search"
-      @click="search"/>
+      @click="search">
+      <q-tooltip>
+        {{ $t('search') }}
+      </q-tooltip>
+    </icon-btn>
   </template>
 </q-input>
 </template>

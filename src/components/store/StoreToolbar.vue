@@ -13,6 +13,9 @@
       floating>
       4
     </q-badge>
+    <q-tooltip>
+      {{ $t('view_cart') }}
+    </q-tooltip>
   </icon-btn>
 </q-toolbar>
 </template>

@@ -14,25 +14,27 @@
   square
   @update:model-value="updateSort">
   <template #selected>
-    <span>Sort by: {{ selectedSort.label }}</span>
+    <span>{{ $t('sort_by') }}: {{ selectedSort.label }}</span>
   </template>
 </q-select>
 </template>
 
 <script lang="ts" setup>
+const { t } = useI18n()
+
 const options: ProductSort[] = [
   {
-    label: 'Price: Low to High',
+    label: t('low_to_high'),
     sortBy: 'price',
     order: 'asc'
   },
   {
-    label: 'Price: High to Low',
+    label: t('high_to_low'),
     sortBy: 'price',
     order: 'desc'
   },
   {
-    label: 'Rating',
+    label: t('rating'),
     sortBy: 'rating',
     order: 'desc'
   }

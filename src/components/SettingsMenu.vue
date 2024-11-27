@@ -9,7 +9,7 @@
     <div class="row no-wrap q-pa-md">
       <div class="column">
         <div class="text-h6 q-mb-md">
-          Settings
+          {{ $t('settings') }}
         </div>
       </div>
 
@@ -32,9 +32,9 @@
 
         <q-btn
           v-close-popup
+          :label="$t('logout')"
           color="primary"
           flat
-          label="Logout"
           push
           size="sm"
           @click="$emit('logout')"/>

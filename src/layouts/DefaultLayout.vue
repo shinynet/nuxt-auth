@@ -22,7 +22,11 @@
       <icon-btn
         v-else
         icon="login"
-        to="/login"/>
+        to="/login">
+        <q-tooltip>
+          {{ $t('login') }}
+        </q-tooltip>
+      </icon-btn>
     </q-toolbar>
 
     <router-view
