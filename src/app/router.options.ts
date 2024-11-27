@@ -15,7 +15,7 @@ export default {
           alias: 'products/search',
           components: {
             default: () => import('../pages/ProductsPage.vue'),
-            toolbar: () => import('../components/store/StoreToolbar.vue'),
+            toolbar: () => import('../components/store/toolbar/StoreToolbar.vue'),
             drawer: () => import('../components/store/CategoryDrawer.vue')
           }
         },
@@ -25,7 +25,7 @@ export default {
           props: true,
           components: {
             default: () => import('../pages/ProductsPage.vue'),
-            toolbar: () => import('../components/store/StoreToolbar.vue'),
+            toolbar: () => import('../components/store/toolbar/StoreToolbar.vue'),
             drawer: () => import('../components/store/CategoryDrawer.vue')
           }
         }

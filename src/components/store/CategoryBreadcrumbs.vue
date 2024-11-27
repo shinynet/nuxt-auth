@@ -8,8 +8,8 @@
   </template>
 
   <q-breadcrumbs-el
+    :label="$t('store')"
     icon="store"
-    label="Store"
     to="/products"/>
   <q-breadcrumbs-el
     :label="categoryName"/>
@@ -18,13 +18,14 @@
 
 <script lang="ts" setup>
 const { category } = defineProps<{ category?: string }>()
+const { t } = useI18n()
 
 const productsStore = useProductsStore()
 
 const categoryName = computed(() => {
   if (!category) return 'All'
   const c = productsStore.getCategory(category)
-  return c ? c.name : 'All'
+  return c ? c.name : t('all')
 })
 </script>
 

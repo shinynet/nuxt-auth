@@ -1,16 +1,21 @@
 export default {
+  all: 'All',
   high: 'High',
   low: 'Low',
   high_to_low: '@:price @:high @:to @:low',
-  low_to_high: '@:price: @:low @:to @:high',
+  low_to_high: '@:price @:low @:to @:high',
   login: 'Login',
   logout: 'Logout',
-  price: 'Price',
+  of: 'of',
+  price: 'Price:',
   rating: 'Rating',
   search: 'Search',
   search_products: '@:search Products',
   settings: 'Settings',
+  showing: 'Showing',
+  showing_of: '@:showing {start} - {end} @:of {total}',
   sort_by: 'Sort by',
+  store: 'Store',
   to: 'to',
   view_cart: 'View Cart'
 }
