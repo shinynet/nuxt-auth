@@ -1,44 +1,48 @@
 <template>
 <q-card
   bordered
+  class="bg-grey-2"
   flat>
-  <q-card-section horizontal>
+  <!-- img -->
+  <q-img
+    class="col-5"
+    ratio="1"
+    width="100%">
     <q-skeleton
-      class="col-5"
-      height="256px"
+      height="100%"
+      style="background: rgb(0, 0, 0, 0.12)"
       type="rect"
-      width="256px"/>
+      width="100%"/>
+  </q-img>
 
-    <q-card-section style="width: 100%;">
-      <!-- title -->
-      <q-skeleton
-        type="text"
-        width="33%"/>
-      <div>
-        <!-- description -->
-        <q-skeleton type="text"/>
-        <q-skeleton type="text"/>
-      </div>
-      <!-- rating -->
-      <q-skeleton
-        type="rect"
-        width="100px"/>
-      <div class="text-weight-bold text-h6">
-        <!-- price -->
-        <q-skeleton
-          type="text"
-          width="75px"/>
-      </div>
-      <div>
-        <!-- shipping info -->
-        <q-skeleton
-          type="text"
-          width="50%"/>
-      </div>
-      <q-skeleton
-        size="sm"
-        type="QBtn"/>
-    </q-card-section>
+  <q-card-section>
+    <!-- name -->
+    <q-skeleton
+      height="56px"
+      type="text"/>
+
+    <!-- rating -->
+    <q-skeleton
+      height="14px"
+      type="rect"
+      width="78px"/>
+
+    <!-- price -->
+    <q-skeleton
+      height="32px"
+      type="text"/>
+
+    <!-- shipping -->
+    <q-skeleton
+      height="20px"
+      type="text"/>
   </q-card-section>
+
+  <q-card-actions>
+    <q-skeleton
+      height="26px"
+      type="QBtn"
+      width="78px"/>
+  </q-card-actions>
 </q-card>
 </template>

@@ -23,11 +23,19 @@
   </q-toolbar>
 
   <div class="row q-gutter-xs flex-center">
-    <product-card
-      v-for="product in products"
-      :key="product.id"
-      :="product"
-      class="card q-mb-md"/>
+    <template v-if="productsStatus === 'pending'">
+      <product-skeleton-card
+        v-for="i in 10"
+        :key="i"
+        class="card q-mb-md"/>
+    </template>
+    <template v-else-if="productsStatus === 'success'">
+      <product-card
+        v-for="product in products"
+        :key="product.id"
+        :="product"
+        class="card q-mb-md"/>
+    </template>
   </div>
 
   <footer
@@ -56,7 +64,8 @@ const productsStore = useProductsStore()
 
 const {
   data: productsData,
-  error: productsError
+  error: productsError,
+  status: productsStatus
 } = await useLazyAsyncData<ProductsResponse>(
   'products',
   () => productsStore.fetchProducts(),

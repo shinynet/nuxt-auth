@@ -8,6 +8,8 @@
       :src="thumbnail"
       class="col-5 cursor-pointer"
       loading="lazy"
+      loading-show-delay="500"
+      ratio="1"
       width="100%"
       @click="$emit('click', id)">
       <div
