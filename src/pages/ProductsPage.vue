@@ -7,19 +7,20 @@
     Error Loading Products
   </q-banner>
 
-  <q-toolbar
-    class="text-caption q-pr-none">
-    <category-breadcrumbs
+  <q-toolbar class="text-caption q-pr-none">
+    <product-breadcrumbs
       :category
       class="text-uppercase"/>
     <q-space/>
-    <span class="gt-xs q-mx-sm">{{
-      $t('showing_of', {
-        start: $n(skip + 1, 'decimal'),
-        end: $n(skip + products.length, 'decimal'),
-        total: $n(total, 'decimal'),
-      })
-    }}&nbsp;</span>
+    <span class="gt-xs q-mx-sm">
+      {{
+        $t('showing_of', {
+          start: $n(skip + 1, 'decimal'),
+          end: $n(skip + products.length, 'decimal'),
+          total: $n(total, 'decimal'),
+        })
+      }}
+    </span>
   </q-toolbar>
 
   <div class="row q-gutter-xs flex-center">

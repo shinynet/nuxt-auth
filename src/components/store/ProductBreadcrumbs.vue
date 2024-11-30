@@ -13,11 +13,17 @@
     to="/products"/>
   <q-breadcrumbs-el
     :label="categoryName"/>
+  <q-breadcrumbs-el
+    :label="productName"/>
 </q-breadcrumbs>
 </template>
 
 <script lang="ts" setup>
-const { category } = defineProps<{ category?: string }>()
+const { category } = defineProps<{
+  category?: string
+  productName?: string
+}>()
+
 const { t } = useI18n()
 
 const productsStore = useProductsStore()

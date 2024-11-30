@@ -28,6 +28,16 @@ export default {
             toolbar: () => import('../components/store/toolbar/StoreToolbar.vue'),
             drawer: () => import('../components/store/CategoryDrawer.vue')
           }
+        },
+        {
+          name: 'product',
+          path: 'products/:productId',
+          props: true,
+          components: {
+            default: () => import('../pages/ProductPage.vue'),
+            toolbar: () => import('../components/store/toolbar/StoreToolbar.vue'),
+            drawer: () => import('../components/store/CategoryDrawer.vue')
+          }
         }
       ]
     },
