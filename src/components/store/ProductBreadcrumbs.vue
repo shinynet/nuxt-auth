@@ -9,11 +9,13 @@
 
   <q-breadcrumbs-el
     :label="$t('store')"
-    icon="store"
-    to="/products"/>
+    :to="{ name: 'products' }"
+    icon="store"/>
   <q-breadcrumbs-el
-    :label="categoryName"/>
+    :label="categoryName"
+    :to="{ name: 'productsByCategory', params: { category } }"/>
   <q-breadcrumbs-el
+    v-if="productName"
     :label="productName"/>
 </q-breadcrumbs>
 </template>

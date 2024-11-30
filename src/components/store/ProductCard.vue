@@ -4,56 +4,52 @@
   class="bg-grey-2"
   flat>
   <div class="bg-grey-3">
-    <q-img
-      :src="thumbnail"
-      class="col-5 cursor-pointer"
-      loading="lazy"
-      loading-show-delay="500"
-      ratio="1"
-      width="100%"
-      @click="$emit('click', id)">
-      <div
-        v-if="availabilityStatus === 'Low Stock'"
-        class="absolute-bottom text-subtitle1 text-center">
-        {{ availabilityStatus }}
-      </div>
-      <div
-        v-if="availabilityStatus === 'Out of Stock'"
-        class="absolute-full text-subtitle2 flex flex-center">
-        {{ availabilityStatus }}
-      </div>
-    </q-img>
+    <router-link :to="link">
+      <q-img
+        :src="thumbnail"
+        class="col-5 cursor-pointer"
+        loading="lazy"
+        loading-show-delay="500"
+        ratio="1"
+        width="100%">
+        <div
+          v-if="availabilityStatus === 'Low Stock'"
+          class="absolute-bottom text-subtitle1 text-center">
+          {{ availabilityStatus }}
+        </div>
+        <div
+          v-if="availabilityStatus === 'Out of Stock'"
+          class="absolute-full text-subtitle2 flex flex-center">
+          {{ availabilityStatus }}
+        </div>
+      </q-img>
+    </router-link>
   </div>
 
   <q-card-section>
-    <header
-      class="text-subtitle1 cursor-pointer"
-      style="height: 56px"
-      @click="$emit('click', id)">
-      {{ title }}
-    </header>
-    <div>
-      <q-rating
-        :model-value="rating"
-        class="q-mr-sm"
-        color="orange"
-        icon="star"
-        readonly
-        size="1em"/>
-      {{ $n(reviews.length, 'decimal') }}
-      <q-tooltip>
-        {{
-          $t('rating_out_of', {
-            rating: $n(rating, 'decimal'),
-            max: $n(5, 'decimal'),
-          })
-        }}
-      </q-tooltip>
-    </div>
+    <router-link
+      :to="link"
+      class="text-primary"
+      style="text-decoration: none">
+      <header
+        class="text-subtitle1"
+        style="height: 56px">
+        {{ title }}
+      </header>
+    </router-link>
 
-    <div class="text-weight-bold text-h6 text-primary">
+    <product-rating
+      :rating
+      :reviews/>
+
+    <div
+      class="
+        text-weight-bold
+        text-h6
+        text-primary">
       {{ $n(price, 'currency') }}
     </div>
+
     <div class="text-caption">
       {{ shippingInformation }}
     </div>
@@ -71,8 +67,14 @@
 </template>
 
 <script lang="ts" setup>
-defineProps<Product>()
+const { id } = defineProps<Product>()
+
 defineEmits<{
   (e: 'click', productId: number): void
 }>()
+
+const link = computed(() => ({
+  name: 'product',
+  params: { productId: id }
+}))
 </script>

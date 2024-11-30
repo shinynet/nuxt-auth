@@ -32,13 +32,7 @@ declare global {
     warrantyInformation: string
     shippingInformation: string
     availabilityStatus: 'In Stock' | 'Low Stock' | 'Out of Stock'
-    reviews: {
-      rating: number
-      comment: string
-      date: string
-      reviewerName: string
-      reviewerEmail: string
-    }[]
+    reviews: Review[]
     returnPolicy: string
     minimumOrderQuantity: number
     meta: {
@@ -49,6 +43,14 @@ declare global {
     }
     images: string[]
     thumbnail: string
+  }
+
+  interface Review {
+    rating: number
+    comment: string
+    date: string
+    reviewerName: string
+    reviewerEmail: string
   }
 
   interface Category {

@@ -10,7 +10,7 @@ export default {
       component: () => import('../layouts/DefaultLayout.vue'),
       children: [
         {
-          name: 'home',
+          name: 'products',
           path: 'products',
           alias: 'products/search',
           components: {
