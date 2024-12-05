@@ -51,11 +51,7 @@
       </template>
     </product-rating>
 
-    <div
-      class="
-        text-weight-bold
-        text-h6
-        text-primary">
+    <div class="text-weight-bold text-h6 text-primary">
       {{ $n(price, 'currency') }}
     </div>
 
@@ -76,13 +72,9 @@
 </template>
 
 <script lang="ts" setup>
-import RatingsTooltip from '~/components/store/ratings/RatingsTooltip.vue'
-
 const { id } = defineProps<Product>()
 
-defineEmits<{
-  (e: 'click', productId: number): void
-}>()
+defineEmits<{ (e: 'click', productId: number): void }>()
 
 const link = computed(() => ({
   name: 'product',
