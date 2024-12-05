@@ -30,7 +30,19 @@
 
       <product-rating
         :rating="productData.rating"
-        :reviews="productData.reviews"/>
+        :reviews="productData.reviews"
+        class="cursor-pointer">
+        <template #append>
+          <q-icon
+            name="arrow_drop_down"
+            size="sm"/>
+        </template>
+        <template #default>
+          <q-popup-proxy>
+            <ratings-card/>
+          </q-popup-proxy>
+        </template>
+      </product-rating>
 
       <q-separator/>
 
@@ -40,25 +52,10 @@
         {{ productData.shippingInformation }}
       </div>
 
-      <q-input
-        class="my-4"
-        label="Quantity"
-        max="10"
-        min="1"
-        model-value="1">
-        <template #prepend>
-          <q-btn
-            dense
-            flat
-            icon="remove"/>
-        </template>
-        <template #append>
-          <q-btn
-            dense
-            flat
-            icon="add"/>
-        </template>
-      </q-input>
+      <product-quantity
+        v-model="quantity"
+        :max-quantity="productData.stock"/>
+
       <q-btn
         class="bg-accent text-white"
         flat>
@@ -71,6 +68,14 @@
       Aside
     </aside>
   </div>
+  <!--  <div class="row"> -->
+  <!--    Reviews -->
+  <!--    <div -->
+  <!--      v-for="(review, i) in productData.reviews" -->
+  <!--      :key="i"> -->
+  <!--      {{ review }} -->
+  <!--    </div> -->
+  <!--  </div> -->
 </q-page>
 </template>
 
@@ -79,6 +84,8 @@ const route = useRoute()
 const productsStore = useProductsStore()
 
 const slide = ref(0)
+
+const quantity = ref(1)
 
 const productId = computed(() => Number(route.params.productId))
 

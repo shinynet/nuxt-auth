@@ -40,7 +40,16 @@
 
     <product-rating
       :rating
-      :reviews/>
+      :reviews>
+      <template #append>
+        <span class="text-caption">
+          ({{ $n(reviews.length, 'decimal') }})
+        </span>
+      </template>
+      <template #default>
+        <ratings-tooltip :rating/>
+      </template>
+    </product-rating>
 
     <div
       class="
@@ -67,6 +76,8 @@
 </template>
 
 <script lang="ts" setup>
+import RatingsTooltip from '~/components/store/ratings/RatingsTooltip.vue'
+
 const { id } = defineProps<Product>()
 
 defineEmits<{
