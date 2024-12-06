@@ -1,12 +1,17 @@
 <template>
 <div class="row q-gutter-x-xs items-start">
-  <nav class="column justify-start q-gutter-y-xs col-auto">
+  <nav
+    v-if="showThumbnails"
+    class="column justify-start q-gutter-y-xs col-auto">
     <q-img
-      v-for="image in images"
+      v-for="(image, i) in images"
       :key="image"
+      :class="{ active: slide === i }"
       :src="image"
-      class="thumbnail"/>
+      class="thumbnail cursor-pointer"
+      @click="slide = i"/>
   </nav>
+
   <q-carousel
     v-model="slide"
     animated
@@ -29,9 +34,11 @@
 </template>
 
 <script lang="ts" setup>
-defineProps<{ images: string[] }>()
+const { images } = defineProps<{ images: string[] }>()
 
 const slide = ref(0)
+
+const showThumbnails = computed(() => images.length > 1)
 </script>
 
 <style lang="scss" scoped>
@@ -40,5 +47,9 @@ const slide = ref(0)
   width: 50px;
   border: solid 1px $grey-6;
   background-color: $grey-1;
+}
+
+.active {
+  border: solid 2px $accent;
 }
 </style>
