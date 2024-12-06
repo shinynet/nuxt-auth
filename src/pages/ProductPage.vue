@@ -7,21 +7,12 @@
       class="text-uppercase"/>
   </q-toolbar>
 
-  <div class="row q-col-gutter-md">
-    <q-carousel
-      v-model="slide"
-      animated
-      class="col-5"
-      infinite
-      swipeable
-      thumbnails>
-      <q-carousel-slide
-        v-for="(image, i) in productData.images"
-        :key="i"
-        :img-src="image"
-        :name="i"/>
-    </q-carousel>
-    <div class="col-5">
+  <div class="row q-px-sm q-col-gutter-md items-start">
+    <product-carousel
+      :images="productData.images"
+      class="col-6"/>
+
+    <div class="col-6">
       <h1 class="text-h5">
         {{ productData.title }}
       </h1>
@@ -64,26 +55,13 @@
 
       <q-separator/>
     </div>
-    <aside class="col-2">
-      Aside
-    </aside>
   </div>
-  <!--  <div class="row"> -->
-  <!--    Reviews -->
-  <!--    <div -->
-  <!--      v-for="(review, i) in productData.reviews" -->
-  <!--      :key="i"> -->
-  <!--      {{ review }} -->
-  <!--    </div> -->
-  <!--  </div> -->
 </q-page>
 </template>
 
 <script lang="ts" setup>
 const route = useRoute()
 const productsStore = useProductsStore()
-
-const slide = ref(0)
 
 const quantity = ref(1)
 
