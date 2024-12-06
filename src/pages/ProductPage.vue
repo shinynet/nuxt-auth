@@ -10,9 +10,9 @@
   <div class="row q-px-sm q-col-gutter-md items-start">
     <product-carousel
       :images="productData.images"
-      class="col-4"/>
+      class="col-xs-12 col-sm-5 col-md-4"/>
 
-    <div class="col-8">
+    <div class="col-xs-12 col-sm-7 col-md-8">
       <h1 class="text-h5">
         {{ productData.title }}
       </h1>

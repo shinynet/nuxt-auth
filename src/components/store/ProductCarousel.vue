@@ -15,7 +15,7 @@
   <q-carousel
     v-model="slide"
     animated
-    class="col"
+    class="col bg-grey-1"
     infinite
     style="height: unset"
     swipeable>
