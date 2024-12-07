@@ -34,7 +34,7 @@ const options: ProductSort[] = [
     order: 'desc'
   },
   {
-    label: t('rating'),
+    label: format.capitalize(t('rating')),
     sortBy: 'rating',
     order: 'desc'
   }

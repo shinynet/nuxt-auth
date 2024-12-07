@@ -22,16 +22,27 @@
       <product-rating
         :rating="productData.rating"
         :reviews="productData.reviews"
-        class="cursor-pointer">
-        <template #append>
-          <q-icon
-            name="arrow_drop_down"
-            size="sm"/>
-        </template>
-        <template #default>
+        class="cursor-pointer"
+        size="xs">
+        <template #default="{ rating, reviews }">
           <q-popup-proxy>
-            <ratings-card/>
+            <ratings-card
+              :rating="rating"
+              :reviews="reviews"
+              style="width: 300px"/>
           </q-popup-proxy>
+        </template>
+        <template #prepend="{ rating }">
+          <span class="caption q-mr-xs">
+            {{ $n(rating, 'decimal') }}
+          </span>
+        </template>
+        <template #append>
+          <q-btn
+            dense
+            flat
+            icon="arrow_drop_down"
+            size="sm"/>
         </template>
       </product-rating>
 

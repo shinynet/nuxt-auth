@@ -14,6 +14,17 @@ export default defineNuxtConfig({
     }
   ],
 
+  imports: {
+    presets: [
+      {
+        from: 'quasar',
+        imports: [
+          { name: 'format', as: 'format' }
+        ]
+      }
+    ]
+  },
+
   devtools: { enabled: true },
 
   css: [
