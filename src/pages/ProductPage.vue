@@ -67,6 +67,64 @@
       <q-separator/>
     </div>
   </div>
+
+  <div class="row q-col-gutter-md">
+    <q-expansion-item
+      class="col-xs-12 col-sm-6"
+      expand-separator
+      label="Item details">
+      <q-markup-table>
+        <tbody>
+          <tr>
+            <td class="text-left">
+              Brand
+            </td>
+            <td class="text-right">
+              {{ productData.brand }}
+            </td>
+          </tr>
+          <tr>
+            <td class="text-left">
+              Ice cream sandwich
+            </td>
+            <td class="text-right">
+              237
+            </td>
+          </tr>
+          <tr>
+            <td class="text-left">
+              Eclair
+            </td>
+            <td class="text-right">
+              262
+            </td>
+          </tr>
+          <tr>
+            <td class="text-left">
+              Cupcake
+            </td>
+            <td class="text-right">
+              305
+            </td>
+          </tr>
+          <tr>
+            <td class="text-left">
+              Gingerbread
+            </td>
+            <td class="text-right">
+              356
+            </td>
+          </tr>
+        </tbody>
+      </q-markup-table>
+    </q-expansion-item>
+    <q-expansion-item
+      class="col-xs-12 col-sm-6"
+      expand-separator
+      label="Measurements">
+      Measurements
+    </q-expansion-item>
+  </div>
 </q-page>
 </template>
 
