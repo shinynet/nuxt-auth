@@ -1,5 +1,5 @@
 <template>
-<q-page>
+<q-page class="q-gutter-y-sm">
   <q-toolbar class="text-caption q-pr-none">
     <product-breadcrumbs
       :category="productData.category"
@@ -12,7 +12,7 @@
       :images="productData.images"
       class="col-xs-12 col-sm-5 col-md-4"/>
 
-    <div class="col-xs-12 col-sm-7 col-md-8">
+    <div class="col-xs-12 col-sm-7 col-md-8 q-gutter-y-sm">
       <h1 class="text-h5">
         {{ productData.title }}
       </h1>
@@ -63,68 +63,16 @@
         flat>
         {{ $t('add_to_cart') }}
       </q-btn>
-
-      <q-separator/>
     </div>
   </div>
 
-  <div class="row q-col-gutter-md">
-    <q-expansion-item
-      class="col-xs-12 col-sm-6"
-      expand-separator
-      label="Item details">
-      <q-markup-table>
-        <tbody>
-          <tr>
-            <td class="text-left">
-              Brand
-            </td>
-            <td class="text-right">
-              {{ productData.brand }}
-            </td>
-          </tr>
-          <tr>
-            <td class="text-left">
-              Ice cream sandwich
-            </td>
-            <td class="text-right">
-              237
-            </td>
-          </tr>
-          <tr>
-            <td class="text-left">
-              Eclair
-            </td>
-            <td class="text-right">
-              262
-            </td>
-          </tr>
-          <tr>
-            <td class="text-left">
-              Cupcake
-            </td>
-            <td class="text-right">
-              305
-            </td>
-          </tr>
-          <tr>
-            <td class="text-left">
-              Gingerbread
-            </td>
-            <td class="text-right">
-              356
-            </td>
-          </tr>
-        </tbody>
-      </q-markup-table>
-    </q-expansion-item>
-    <q-expansion-item
-      class="col-xs-12 col-sm-6"
-      expand-separator
-      label="Measurements">
-      Measurements
-    </q-expansion-item>
-  </div>
+  <product-information :="productData"/>
+
+  <q-toolbar>
+    <q-toolbar-title class="text-subtitle1">
+      Reviews
+    </q-toolbar-title>
+  </q-toolbar>
 </q-page>
 </template>
 
@@ -178,3 +126,9 @@ const {
   }
 )
 </script>
+
+<style lang="scss">
+.table-header {
+  border: solid 1px $grey-5;
+}
+</style>
