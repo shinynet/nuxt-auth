@@ -68,11 +68,9 @@
 
   <product-information :="productData"/>
 
-  <q-toolbar>
-    <q-toolbar-title class="text-subtitle1">
-      Reviews
-    </q-toolbar-title>
-  </q-toolbar>
+  <div class=" row col-xs-12 col-sm-6">
+    <product-reviews :reviews="productData.reviews"/>
+  </div>
 </q-page>
 </template>
 
@@ -126,9 +124,3 @@ const {
   }
 )
 </script>
-
-<style lang="scss">
-.table-header {
-  border: solid 1px $grey-5;
-}
-</style>
