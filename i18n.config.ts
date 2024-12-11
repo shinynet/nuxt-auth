@@ -1,9 +1,19 @@
 import messages from '~/locales/messages'
-import numberFormats from '~/locales/numberFormats'
 
 export default defineI18nConfig(() => ({
-  legacy: false,
-  locale: 'en',
+  locale: 'en-US',
   messages,
-  numberFormats
+  numberFormats: {
+    'en-US': {
+      currency: {
+        style: 'currency', currency: 'USD', notation: 'standard'
+      },
+      decimal: {
+        style: 'decimal', maximumFractionDigits: 2
+      },
+      percent: {
+        style: 'percent', useGrouping: false
+      }
+    }
+  }
 }))
