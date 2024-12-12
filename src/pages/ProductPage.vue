@@ -1,76 +1,103 @@
 <template>
-<q-page class="q-gutter-y-sm">
-  <q-toolbar class="text-caption q-pr-none">
+<q-page class="page">
+  <q-toolbar
+    class="text-caption q-pr-none"
+    style="grid-area: tlbr">
     <product-breadcrumbs
       :category="productData.category"
       :product-name="productData.title"
       class="text-uppercase"/>
   </q-toolbar>
 
-  <div class="row q-px-sm q-col-gutter-md items-start">
-    <product-carousel
-      :images="productData.images"
-      class="col-xs-12 col-sm-5 col-md-4"/>
+  <product-carousel
+    :images="productData.images"
+    style="grid-area: photo"/>
 
-    <div class="col-xs-12 col-sm-7 col-md-8 q-gutter-y-sm">
-      <h1 class="text-h5">
-        {{ productData.title }}
-      </h1>
+  <div style="grid-area: cont">
+    <h1 class="text-h5">
+      {{ productData.title }}
+    </h1>
 
-      <p>{{ productData.description }}</p>
+    <p>{{ productData.description }}</p>
 
-      <product-rating
-        :rating="productData.rating"
-        :reviews="productData.reviews"
-        class="cursor-pointer"
-        size="xs">
-        <template #default="{ rating, reviews }">
-          <q-popup-proxy>
-            <ratings-card
-              :rating="rating"
-              :reviews="reviews"
-              style="width: 300px"/>
-          </q-popup-proxy>
-        </template>
-        <template #prepend="{ rating }">
-          <span class="caption q-mr-xs">
-            {{ $n(rating, 'decimal') }}
-          </span>
-        </template>
-        <template #append>
-          <q-btn
-            dense
-            flat
-            icon="arrow_drop_down"
-            size="sm"/>
-        </template>
-      </product-rating>
+    <product-rating
+      :rating="productData.rating"
+      :reviews="productData.reviews"
+      class="cursor-pointer"
+      size="xs">
+      <template #default="{ rating, reviews }">
+        <q-popup-proxy>
+          <ratings-card
+            :rating="rating"
+            :reviews="reviews"
+            style="width: 300px"/>
+        </q-popup-proxy>
+      </template>
+      <template #prepend="{ rating }">
+        <span class="caption q-mr-xs">
+          {{ $n(rating, 'decimal') }}
+        </span>
+      </template>
+      <template #append>
+        <q-btn
+          dense
+          flat
+          icon="arrow_drop_down"
+          size="sm"/>
+      </template>
+    </product-rating>
 
-      <q-separator/>
+    <q-separator/>
 
-      <product-price :price="productData.price"/>
+    <product-price :price="productData.price"/>
 
-      <div class="text-caption">
-        {{ productData.shippingInformation }}
-      </div>
-
-      <product-quantity
-        v-model="quantity"
-        :max-quantity="productData.stock"/>
-
-      <q-btn
-        class="bg-accent text-white"
-        flat>
-        {{ $t('add_to_cart') }}
-      </q-btn>
+    <div class="text-caption">
+      {{ productData.shippingInformation }}
     </div>
+
+    <product-quantity
+      v-model="quantity"
+      :max-quantity="productData.stock"/>
+
+    <q-btn
+      class="bg-accent text-white"
+      flat>
+      {{ $t('add_to_cart') }}
+    </q-btn>
   </div>
 
-  <product-information :="productData"/>
+  <q-toolbar style="grid-area: info">
+    <q-toolbar-title class="text-subtitle1">
+      Product Information
+    </q-toolbar-title>
+    <q-btn
+      class="q-mr-xs"
+      dense
+      flat
+      icon="keyboard_arrow_up"
+      round/>
+    <q-btn
+      dense
+      flat
+      icon="keyboard_arrow_down"
+      round/>
+  </q-toolbar>
 
-  <div class=" row col-xs-12 col-sm-6">
-    <product-reviews :reviews="productData.reviews"/>
-  </div>
+  <q-expansion-item
+    expand-separator
+    header-class="table-header"
+    label="Item details"
+    style="grid-area: dets"/>
+
+  <q-expansion-item
+    expand-separator
+    header-class="table-header"
+    label="Measurements"
+    style="grid-area: meas"/>
+
+  <product-reviews
+    :reviews="productData.reviews"
+    style="grid-area: rev"/>
 </q-page>
 </template>
 
@@ -124,3 +151,16 @@ const {
   }
 )
 </script>
+
+<style lang="scss" scoped>
+.page {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "tlbr  tlbr  tlbr tlbr tlbr tlbr"
+    "photo photo cont cont cont cont"
+    "info  info  info info info info"
+    "dets  dets  dets meas meas meas"
+    "....  ....  rev  rev  rev  rev";
+}
+</style>
