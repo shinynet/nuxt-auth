@@ -4,7 +4,7 @@
   :width="drawerWidth"
   bordered
   side="right"
-  class="bg-primary text-grey-4 hide-scrollbar"
+  class="bg-grey-4 text-grey-4 hide-scrollbar"
   show-if-above
   @update:model-value="handleChange">
   Cart Drawer

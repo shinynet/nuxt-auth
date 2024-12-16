@@ -89,17 +89,17 @@
     expand-separator
     header-class="table-header"
     label="Item details"
-    style="grid-area: dtl"/>
+    style="grid-area: dtls"/>
 
   <q-expansion-item
     expand-separator
     header-class="table-header"
     label="Measurements"
-    style="grid-area: msr"/>
+    style="grid-area: msrm"/>
 
   <product-reviews
     :reviews="productData.reviews"
-    style="grid-area: rvw"/>
+    style="grid-area: rvws"/>
 </q-page>
 </template>
 
@@ -158,12 +158,12 @@ const {
 .page {
   display: grid;
   gap: 0 $flex-gutter-md;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(8, 1fr);
   grid-template-areas:
-    "tlbr tlbr tlbr tlbr tlbr tlbr"
-    "glry glry gnrl gnrl gnrl gnrl"
-    "info info info info info info"
-    "dtl  dtl  dtl  msr  msr  msr"
-    "... ...   rvw  rvw  rvw  rvw";
+    "tlbr tlbr tlbr tlbr tlbr tlbr tlbr tlbr"
+    "glry glry glry gnrl gnrl gnrl gnrl gnrl"
+    "info info info info info info info info"
+    "dtls dtls dtls dtls msrm msrm msrm msrm"
+    "... ...   rvws rvws rvws rvws rvws rvws";
 }
 </style>
