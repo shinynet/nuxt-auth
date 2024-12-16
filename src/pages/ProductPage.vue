@@ -66,35 +66,16 @@
     </q-btn>
   </section>
 
-  <q-toolbar
-    class="q-px-none"
-    style="grid-area: info">
-    <q-toolbar-title class="text-subtitle1">
-      Product Information
-    </q-toolbar-title>
-    <q-btn
-      class="q-mr-xs"
-      dense
-      flat
-      icon="keyboard_arrow_up"
-      round/>
-    <q-btn
-      dense
-      flat
-      icon="keyboard_arrow_down"
-      round/>
-  </q-toolbar>
-
-  <q-expansion-item
-    expand-separator
-    header-class="table-header"
-    label="Item details"
+  <product-details
+    :brand="productData.brand"
+    :shipping-information="productData.shippingInformation"
+    :sku="productData.sku"
+    :warranty-information="productData.warrantyInformation"
     style="grid-area: dtls"/>
 
-  <q-expansion-item
-    expand-separator
-    header-class="table-header"
-    label="Measurements"
+  <product-measurements
+    :dimensions="productData.dimensions"
+    :weight="productData.weight"
     style="grid-area: msrm"/>
 
   <product-reviews
@@ -104,6 +85,9 @@
 </template>
 
 <script lang="ts" setup>
+import ProductDetails from '~/components/store/product/ProductDetails.vue'
+import ProductMeasurements from '~/components/store/product/ProductMeasurements.vue'
+
 const route = useRoute()
 const productsStore = useProductsStore()
 
@@ -162,8 +146,7 @@ const {
   grid-template-areas:
     "tlbr tlbr tlbr tlbr tlbr tlbr tlbr tlbr"
     "glry glry glry gnrl gnrl gnrl gnrl gnrl"
-    "info info info info info info info info"
     "dtls dtls dtls dtls msrm msrm msrm msrm"
-    "... ...   rvws rvws rvws rvws rvws rvws";
+    ".... .... .... rvws rvws rvws rvws rvws";
 }
 </style>

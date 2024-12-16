@@ -1,6 +1,6 @@
 <template>
 <div>
-  <q-toolbar>
+  <q-toolbar class="bg-grey-3">
     <q-toolbar-title class="text-subtitle1">
       Reviews
     </q-toolbar-title>

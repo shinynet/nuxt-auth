@@ -1,11 +1,10 @@
 <template>
 <q-drawer
   :model-value="drawerOpen"
-  :width="drawerWidth"
   bordered
-  side="right"
   class="bg-grey-4 text-grey-4 hide-scrollbar"
   show-if-above
+  side="right"
   @update:model-value="handleChange">
   Cart Drawer
 </q-drawer>
@@ -14,7 +13,8 @@
 <script lang="ts" setup>
 defineProps<{ drawerOpen: boolean }>()
 
-const emit = defineEmits<{ (e: 'drawerChange', drawerOpen: boolean): void
+const emit = defineEmits<{
+  (e: 'drawerChange', drawerOpen: boolean): void
 }>()
 const handleChange = (drawerOpen: boolean) => {
   emit('drawerChange', drawerOpen)
