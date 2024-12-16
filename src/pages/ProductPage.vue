@@ -1,7 +1,7 @@
 <template>
-<q-page class="page">
+<q-page class="page q-px-sm">
   <q-toolbar
-    class="text-caption q-pr-none"
+    class="text-caption q-px-none"
     style="grid-area: tlbr">
     <product-breadcrumbs
       :category="productData.category"
@@ -11,9 +11,9 @@
 
   <product-carousel
     :images="productData.images"
-    style="grid-area: photo"/>
+    style="grid-area: glry"/>
 
-  <div style="grid-area: cont">
+  <section style="grid-area: gnrl">
     <h1 class="text-h5">
       {{ productData.title }}
     </h1>
@@ -51,9 +51,9 @@
 
     <product-price :price="productData.price"/>
 
-    <div class="text-caption">
+    <p class="text-caption">
       {{ productData.shippingInformation }}
-    </div>
+    </p>
 
     <product-quantity
       v-model="quantity"
@@ -64,9 +64,11 @@
       flat>
       {{ $t('add_to_cart') }}
     </q-btn>
-  </div>
+  </section>
 
-  <q-toolbar style="grid-area: info">
+  <q-toolbar
+    class="q-px-none"
+    style="grid-area: info">
     <q-toolbar-title class="text-subtitle1">
       Product Information
     </q-toolbar-title>
@@ -87,17 +89,17 @@
     expand-separator
     header-class="table-header"
     label="Item details"
-    style="grid-area: dets"/>
+    style="grid-area: dtl"/>
 
   <q-expansion-item
     expand-separator
     header-class="table-header"
     label="Measurements"
-    style="grid-area: meas"/>
+    style="grid-area: msr"/>
 
   <product-reviews
     :reviews="productData.reviews"
-    style="grid-area: rev"/>
+    style="grid-area: rvw"/>
 </q-page>
 </template>
 
@@ -155,12 +157,13 @@ const {
 <style lang="scss" scoped>
 .page {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 0 $flex-gutter-md;
+  grid-template-columns: repeat(6, 1fr);
   grid-template-areas:
-    "tlbr  tlbr  tlbr tlbr tlbr tlbr"
-    "photo photo cont cont cont cont"
-    "info  info  info info info info"
-    "dets  dets  dets meas meas meas"
-    "....  ....  rev  rev  rev  rev";
+    "tlbr tlbr tlbr tlbr tlbr tlbr"
+    "glry glry gnrl gnrl gnrl gnrl"
+    "info info info info info info"
+    "dtl  dtl  dtl  msr  msr  msr"
+    "... ...   rvw  rvw  rvw  rvw";
 }
 </style>

@@ -31,13 +31,19 @@
 
     <router-view
       name="toolbar"
-      @toggle-drawer="toggleDrawer"/>
+      @toggle-left-drawer="toggleLeftDrawer"
+      @toggle-right-drawer="toggleRightDrawer"/>
   </q-header>
 
   <router-view
-    :drawer-open="drawerOpen"
-    name="drawer"
-    @drawer-change="drawerOpen = $event"/>
+    :drawer-open="leftDrawerOpen"
+    name="leftDrawer"
+    @drawer-change="leftDrawerOpen = $event"/>
+
+  <router-view
+    :drawer-open="rightDrawerOpen"
+    name="rightDrawer"
+    @drawer-change="rightDrawerOpen = $event"/>
 
   <q-page-container>
     <router-view class="bg-grey-4"/>
@@ -48,9 +54,14 @@
 <script lang="ts" setup>
 defineProps<{ headerHeightHint: number }>()
 
-const drawerOpen = ref(false)
-const toggleDrawer = () => {
-  drawerOpen.value = !drawerOpen.value
+const leftDrawerOpen = ref(false)
+const toggleLeftDrawer = () => {
+  leftDrawerOpen.value = !leftDrawerOpen.value
+}
+
+const rightDrawerOpen = ref(false)
+const toggleRightDrawer = () => {
+  rightDrawerOpen.value = !rightDrawerOpen.value
 }
 
 const authStore = useAuthStore()

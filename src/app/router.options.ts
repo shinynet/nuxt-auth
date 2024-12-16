@@ -16,7 +16,8 @@ export default {
           components: {
             default: () => import('../pages/ProductsPage.vue'),
             toolbar: () => import('../components/store/toolbar/StoreToolbar.vue'),
-            drawer: () => import('../components/store/CategoryDrawer.vue')
+            leftDrawer: () => import('../components/store/CategoryDrawer.vue'),
+            rightDrawer: () => import('../components/store/CartDrawer.vue')
           }
         },
         {
@@ -26,7 +27,8 @@ export default {
           components: {
             default: () => import('../pages/ProductsPage.vue'),
             toolbar: () => import('../components/store/toolbar/StoreToolbar.vue'),
-            drawer: () => import('../components/store/CategoryDrawer.vue')
+            leftDrawer: () => import('../components/store/CategoryDrawer.vue'),
+            rightDrawer: () => import('../components/store/CartDrawer.vue')
           }
         },
         {
@@ -36,7 +38,8 @@ export default {
           components: {
             default: () => import('../pages/ProductPage.vue'),
             toolbar: () => import('../components/store/toolbar/StoreToolbar.vue'),
-            drawer: () => import('../components/store/CategoryDrawer.vue')
+            leftDrawer: () => import('../components/store/CategoryDrawer.vue'),
+            rightDrawer: () => import('../components/store/CartDrawer.vue')
           }
         }
       ]

@@ -5,14 +5,13 @@
     :reviews="reviews"
     name="prepend"/>
   <q-rating
+    :="$attrs"
     :model-value="rating"
-    class="q-mr-sm"
     color="orange"
     icon="star"
     readonly
     size="1em"
-    style="margin-right: 0"
-    v-bind="$attrs"/>
+    style="margin-right: 0"/>
   <slot
     :rating="rating"
     :reviews="reviews"
