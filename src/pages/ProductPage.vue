@@ -78,6 +78,11 @@
     :weight="productData.weight"
     style="grid-area: msrm"/>
 
+  <ratings-card
+    :rating="productData.rating"
+    :reviews="productData.reviews"
+    style="grid-area: rvwc"/>
+
   <product-reviews
     :reviews="productData.reviews"
     style="grid-area: rvws"/>
@@ -147,6 +152,6 @@ const {
     "tlbr tlbr tlbr tlbr tlbr tlbr tlbr tlbr"
     "glry glry glry gnrl gnrl gnrl gnrl gnrl"
     "dtls dtls dtls dtls msrm msrm msrm msrm"
-    ".... .... .... rvws rvws rvws rvws rvws";
+    "rvwc rvwc rvwc rvws rvws rvws rvws rvws";
 }
 </style>

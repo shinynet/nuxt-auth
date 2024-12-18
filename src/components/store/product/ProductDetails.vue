@@ -1,7 +1,7 @@
 <template>
 <q-expansion-item
   :label="$t('item_details')"
-  header-class="bg-grey-3">
+  header-class="bg-grey-3 text-subtitle1">
   <q-markup-table
     class="bg-grey-1"
     flat>
