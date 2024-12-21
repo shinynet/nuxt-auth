@@ -1,5 +1,5 @@
 <template>
-<q-page class="page q-px-sm">
+<q-page class="page q-px-sm q-gutter-y-md">
   <q-toolbar
     class="text-caption q-px-none"
     style="grid-area: tlbr">
@@ -55,15 +55,17 @@
       {{ productData.shippingInformation }}
     </p>
 
-    <product-quantity
-      v-model="quantity"
-      :max-quantity="productData.stock"/>
+    <div class="row q-gutter-sm">
+      <product-quantity
+        v-model="quantity"
+        :max-quantity="productData.stock"/>
 
-    <q-btn
-      class="bg-accent text-white"
-      flat>
-      {{ $t('add_to_cart') }}
-    </q-btn>
+      <q-btn
+        class="bg-accent text-white"
+        flat>
+        {{ $t('add_to_cart') }}
+      </q-btn>
+    </div>
   </section>
 
   <product-details
@@ -87,14 +89,12 @@
 
   <product-reviews
     :reviews="productData.reviews"
+    class="reviews"
     style="grid-area: rvws"/>
 </q-page>
 </template>
 
 <script lang="ts" setup>
-import ProductDetails from '~/components/store/product/ProductDetails.vue'
-import ProductMeasurements from '~/components/store/product/ProductMeasurements.vue'
-
 const route = useRoute()
 const productsStore = useProductsStore()
 
@@ -155,5 +155,30 @@ const {
     "glry glry glry gnrl gnrl gnrl gnrl gnrl"
     "dtls dtls dtls dtls msrm msrm msrm msrm"
     "rvwc rvwc rvwc rvws rvws rvws rvws rvws";
+}
+
+@media (max-width: $breakpoint-md-max) {
+  .page {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+    "tlbr tlbr"
+    "glry gnrl"
+    "dtls msrm"
+    "rvwc rvws";
+  }
+}
+
+@media (max-width: $breakpoint-xs-max) {
+  .page {
+    grid-template-columns: auto;
+    grid-template-areas:
+    "tlbr"
+    "gnrl"
+    "glry"
+    "dtls"
+    "msrm"
+    "rvwc"
+    "rvws";
+  }
 }
 </style>

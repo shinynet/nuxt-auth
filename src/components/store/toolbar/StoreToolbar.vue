@@ -13,7 +13,5 @@
 </template>
 
 <script lang="ts" setup>
-defineEmits<{
-  (e: 'toggle-left-drawer' | 'toggle-right-drawer'): void
-}>()
+defineEmits<{ (e: 'toggle-left-drawer' | 'toggle-right-drawer'): void }>()
 </script>
