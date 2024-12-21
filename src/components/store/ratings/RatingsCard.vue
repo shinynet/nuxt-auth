@@ -1,5 +1,5 @@
 <template>
-<q-card class="bg-secondary text-white">
+<q-card>
   <q-card-section class="row items-center q-pb-none">
     <product-rating
       :rating
@@ -20,6 +20,7 @@
     <q-space/>
 
     <q-btn
+      v-if="isPopup"
       v-close-popup
       dense
       flat
@@ -43,7 +44,9 @@
 
   <q-separator dark/>
 
-  <q-card-actions align="center">
+  <q-card-actions
+    v-if="isPopup"
+    align="center">
     <q-btn flat>
       {{ $t('see_customer_reviews') }}
     </q-btn>
@@ -55,6 +58,7 @@
 const { reviews } = defineProps<{
   reviews: Review[]
   rating: number
+  isPopup?: boolean
 }>()
 
 const groupedReviews = computed(

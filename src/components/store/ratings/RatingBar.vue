@@ -15,8 +15,8 @@
     <div class="absolute-full flex flex-center">
       <q-badge
         :label="$n(percent, 'percent')"
-        color="secondary"
-        text-color="grey-1"/>
+        color="grey-5"
+        text-color="primary"/>
     </div>
   </q-linear-progress>
   <span>{{ }}</span>

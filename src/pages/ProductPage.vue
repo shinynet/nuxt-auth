@@ -81,6 +81,8 @@
   <ratings-card
     :rating="productData.rating"
     :reviews="productData.reviews"
+    class="bg-grey-4"
+    flat
     style="grid-area: rvwc"/>
 
   <product-reviews
