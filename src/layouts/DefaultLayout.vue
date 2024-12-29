@@ -65,7 +65,9 @@ const toggleRightDrawer = () => {
 }
 
 const authStore = useAuthStore()
-const { isAuthenticated, user } = storeToRefs(authStore)
+const userStore = useUserStore()
+const { isAuthenticated } = storeToRefs(authStore)
+const { user } = storeToRefs(userStore)
 const logout = () => {
   authStore.logout()
   navigateTo('/login')

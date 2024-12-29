@@ -2,8 +2,9 @@ export default defineNuxtRouteMiddleware(async () => {
   if (import.meta.client) return
 
   const authStore = useAuthStore()
+  const userStore = useUserStore()
 
-  const { execute: login } = useAsyncData(() => authStore.fetchUser(), {
+  const { execute: fetchUser } = useAsyncData(() => userStore.fetchUser(), {
     immediate: false
   })
 
@@ -11,6 +12,6 @@ export default defineNuxtRouteMiddleware(async () => {
   const isAuthenticated = authStore.isAuthenticated
 
   if (token && !isAuthenticated) {
-    await login()
+    await fetchUser()
   }
 })
