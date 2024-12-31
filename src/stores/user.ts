@@ -2,10 +2,11 @@ export const useUserStore = defineStore('user', () => {
   const user = ref<User>()
 
   const authStore = useAuthStore()
+  const cartStore = useCartStore()
 
   const fetchUser = () => $fetch('/api/auth/user', {
     headers: useRequestHeaders(['cookie']), // this is important!
-    onResponse: ({ response }) => {
+    onResponse: async ({ response }) => {
       if (!response.ok) return
 
       const {
@@ -29,6 +30,7 @@ export const useUserStore = defineStore('user', () => {
       }
 
       authStore.isAuthenticated = true
+      await cartStore.fetchCarts(user.value.id)
     },
     onResponseError: () => {
       authStore.logout()
