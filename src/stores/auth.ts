@@ -1,6 +1,6 @@
 export const useAuthStore = defineStore('auth', () => {
   const isAuthenticated = ref(false)
-  const user = ref<User>()
+  const user = ref<AuthUser>()
   const redirect = ref<string>()
 
   const login = (username: string, password: string) => $fetch('/api/auth/login', {

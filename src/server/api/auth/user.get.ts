@@ -2,7 +2,7 @@ export default defineEventHandler(async (event) => {
   const { apiUrl } = useRuntimeConfig(event)
   const { token } = parseCookies(event)
 
-  return $fetch<User>('/auth/me', {
+  return $fetch<AuthUser>('/auth/me', {
     method: 'get',
     headers: {
       Authorization: `Bearer ${token}`

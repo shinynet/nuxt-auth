@@ -15,9 +15,12 @@ declare global {
     limit: number
   }
 
-  interface LoginResponse extends User {
+  interface RefreshResponse {
     accessToken: string
     refreshToken: string
+  }
+
+  interface LoginResponse extends AuthUser, RefreshResponse {
   }
 
   interface PageQuery {

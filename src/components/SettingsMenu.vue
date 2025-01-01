@@ -45,7 +45,7 @@
 </template>
 
 <script lang="ts" setup>
-defineProps<Pick<User, 'firstName' | 'lastName' | 'image'>>()
+defineProps<Pick<AuthUser, 'firstName' | 'lastName' | 'image'>>()
 defineEmits(['logout'])
 </script>
 

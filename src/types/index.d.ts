@@ -1,7 +1,7 @@
 // ~/types/index.d.ts
 
 declare global {
-  interface User {
+  interface AuthUser {
     id: number
     username: string
     firstName: string

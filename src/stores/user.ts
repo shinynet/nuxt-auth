@@ -1,5 +1,5 @@
 export const useUserStore = defineStore('user', () => {
-  const user = ref<User>()
+  const user = ref<AuthUser>()
 
   const authStore = useAuthStore()
   const cartStore = useCartStore()
