@@ -5,7 +5,7 @@ export const useUserStore = defineStore('user', () => {
   const cartStore = useCartStore()
 
   const fetchUser = () => $fetch('/api/auth/user', {
-    headers: useRequestHeaders(['cookie']), // this is important!
+    headers: useRequestHeaders(['cookie']),
     onResponse: async ({ response }) => {
       if (!response.ok) return
 
