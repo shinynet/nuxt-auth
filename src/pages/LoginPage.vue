@@ -89,7 +89,7 @@ const { execute: login, error } = useAsyncData(
     })
     .catch((error) => {
       password.value = ''
-      throw error
+      createError(error)
     }),
   {
     immediate: false
@@ -100,7 +100,3 @@ const handleSubmit = () => {
   login()
 }
 </script>
-
-<style scoped>
-
-</style>

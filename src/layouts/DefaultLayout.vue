@@ -13,10 +13,10 @@
       </q-toolbar-title>
 
       <settings-menu
-        v-if="isAuthenticated && user"
-        :first-name="user.firstName"
-        :image="user.image"
-        :last-name="user.lastName"
+        v-if="isAuthenticated && authUser"
+        :first-name="authUser.firstName"
+        :image="authUser.image"
+        :last-name="authUser.lastName"
         @logout="logout"/>
 
       <icon-btn
@@ -65,9 +65,7 @@ const toggleRightDrawer = () => {
 }
 
 const authStore = useAuthStore()
-const userStore = useUserStore()
-const { isAuthenticated } = storeToRefs(authStore)
-const { user } = storeToRefs(userStore)
+const { authUser, isAuthenticated } = storeToRefs(authStore)
 const logout = () => {
   authStore.logout()
   navigateTo('/login')

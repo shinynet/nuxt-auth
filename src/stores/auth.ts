@@ -1,9 +1,15 @@
 export const useAuthStore = defineStore('auth', () => {
   const isAuthenticated = ref(false)
-  const user = ref<AuthUser>()
+  const authUser = ref<AuthUser>()
   const redirect = ref<string>()
 
-  const login = (username: string, password: string) => $fetch('/api/auth/login', {
+  const accessToken = useCookie('accessToken')
+  const refreshToken = useCookie('refreshToken')
+
+  const login = (
+    username: string,
+    password: string
+  ) => $fetch('/api/auth/login', {
     method: 'POST',
     body: {
       username,
@@ -11,7 +17,7 @@ export const useAuthStore = defineStore('auth', () => {
     },
     onResponseError: () => {
       isAuthenticated.value = false
-      user.value = undefined
+      authUser.value = undefined
     },
     onResponse: ({ response }) => {
       if (!response.ok) return
@@ -23,16 +29,13 @@ export const useAuthStore = defineStore('auth', () => {
         lastName,
         email,
         gender,
-        image,
-        accessToken
+        image
       } = response._data
 
-      const currentDate = new Date()
-      useCookie('token', {
-        expires: new Date(currentDate.setMinutes(currentDate.getMinutes() + 60))
-      }).value = accessToken
+      accessToken.value = response._data.accessToken
+      refreshToken.value = response._data.refreshToken
 
-      user.value = {
+      authUser.value = {
         id,
         username,
         firstName,
@@ -47,18 +50,17 @@ export const useAuthStore = defineStore('auth', () => {
   })
 
   const logout = () => {
-    useCookie('token', {
-      expires: new Date(1970, 0, 1)
-    }).value = null
+    accessToken.value = null
+    refreshToken.value = null
     isAuthenticated.value = false
-    user.value = undefined
+    authUser.value = undefined
   }
 
   return {
+    authUser,
     isAuthenticated,
-    user,
-    redirect,
     login,
-    logout
+    logout,
+    redirect
   }
 })
