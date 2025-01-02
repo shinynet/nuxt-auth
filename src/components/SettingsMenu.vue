@@ -10,6 +10,14 @@
       <div class="column">
         <div class="text-h6 q-mb-md">
           {{ $t('settings') }}
+          <q-btn
+            v-close-popup
+            :label="$t('profile')"
+            color="primary"
+            flat
+            push
+            size="sm"
+            @click="$emit('profile')"/>
         </div>
       </div>
 
@@ -46,7 +54,9 @@
 
 <script lang="ts" setup>
 defineProps<Pick<AuthUser, 'firstName' | 'lastName' | 'image'>>()
-defineEmits(['logout'])
+defineEmits<{
+  (e: 'logout' | 'profile'): void
+}>()
 </script>
 
 <style scoped>

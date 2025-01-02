@@ -17,7 +17,8 @@
         :first-name="authUser.firstName"
         :image="authUser.image"
         :last-name="authUser.lastName"
-        @logout="logout"/>
+        @logout="logout"
+        @profile="profile"/>
 
       <icon-btn
         v-else
@@ -69,6 +70,10 @@ const { authUser, isAuthenticated } = storeToRefs(authStore)
 const logout = () => {
   authStore.logout()
   navigateTo('/login')
+}
+
+const profile = () => {
+  navigateTo('/profile')
 }
 </script>
 

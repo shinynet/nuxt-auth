@@ -18,6 +18,7 @@ export default {
   of: 'of',
   out: 'out',
   price: 'Price:',
+  profile: 'profile',
   rating: 'rating | ratings',
   rating_out_of: '{rating} @:out @:of {max}',
   search: 'Search',

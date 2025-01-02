@@ -52,7 +52,20 @@ export default {
       children: [{
         name: 'login',
         path: '',
+        props: route => ({ redirect: route.query.redirect }),
         component: () => import('../pages/LoginPage.vue')
+      }]
+    },
+
+    {
+      path: '/profile',
+      component: () => import('../layouts/DefaultLayout.vue'),
+      props: { headerHeightHint: 50 },
+      children: [{
+        name: 'profile',
+        path: '',
+        meta: { auth: true },
+        component: () => import('../pages/ProfilePage.vue')
       }]
     }
 

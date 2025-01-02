@@ -1,7 +1,6 @@
 export const useAuthStore = defineStore('auth', () => {
   const isAuthenticated = ref(false)
   const authUser = ref<AuthUser>()
-  const redirect = ref<string>()
 
   const accessToken = useCookie('accessToken')
   const refreshToken = useCookie('refreshToken')
@@ -11,7 +10,7 @@ export const useAuthStore = defineStore('auth', () => {
     onResponseError: () => {
       logout()
     },
-    onResponse: ({response}) => {
+    onResponse: ({ response }) => {
       if (!response.ok) return
 
       const {
@@ -50,7 +49,7 @@ export const useAuthStore = defineStore('auth', () => {
     onResponseError: () => {
       logout()
     },
-    onResponse: ({response}) => {
+    onResponse: ({ response }) => {
       if (!response.ok) return
 
       const {
@@ -86,7 +85,7 @@ export const useAuthStore = defineStore('auth', () => {
     onResponseError: () => {
       logout()
     },
-    onResponse: ({response}) => {
+    onResponse: ({ response }) => {
       if (!response.ok) return
 
       accessToken.value = response._data.accessToken
@@ -107,7 +106,6 @@ export const useAuthStore = defineStore('auth', () => {
     login,
     logout,
     me,
-    refresh,
-    redirect
+    refresh
   }
 })

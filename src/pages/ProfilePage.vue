@@ -1,9 +1,5 @@
 <template>
-<q-page padding>
-  <h1 class="text-h4">
-    Store Admin Page
-  </h1>
-</q-page>
+<h1>Profile</h1>
 </template>
 
 <script lang="ts" setup>

@@ -62,11 +62,7 @@
 </template>
 
 <script lang="ts" setup>
-definePageMeta({
-  title: 'Login',
-  path: '/login',
-  middleware: ['redirect']
-})
+const { redirect } = defineProps<{ redirect?: string }>()
 
 const username = ref('')
 const usernameRules = [
@@ -84,8 +80,7 @@ const { execute: login, error } = useAsyncData(
   'login',
   () => authStore.login(username.value, password.value)
     .then(() => {
-      navigateTo(authStore.redirect || '/')
-      authStore.redirect = undefined
+      navigateTo(redirect || '/')
     })
     .catch((error) => {
       password.value = ''
