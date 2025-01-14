@@ -13,6 +13,13 @@ export default {
           name: 'products',
           path: 'products',
           alias: 'products/search',
+          props: {
+            default: route => ({
+              ...route.query,
+              limit: Number(route.query.limit ?? 10),
+              skip: Number(route.query.skip ?? 0)
+            })
+          },
           components: {
             default: () => import('../pages/ProductsPage.vue'),
             toolbar: () => import('../components/store/toolbar/StoreToolbar.vue'),

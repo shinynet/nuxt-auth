@@ -55,26 +55,38 @@
 </template>
 
 <script lang="ts" setup>
-const { category } = defineProps<{ category?: string }>()
-
-const { query, limit, skip } = useProductsQuery()
-
-const { page, updatePage } = usePagination(limit, skip)
-
-const productsStore = useProductsStore()
+const {
+  category = defaults.category,
+  limit = defaults.paging.limit,
+  skip = defaults.paging.skip,
+  sortBy = defaults.paging.sortBy,
+  order = defaults.paging.order,
+  q = defaults.paging.q
+} = defineProps<{
+  category?: string
+  limit?: number
+  skip?: number
+  sortBy?: string
+  order?: string
+  q?: string
+}>()
 
 const {
   data: productsData,
   error: productsError,
   status: productsStatus
-} = await useLazyAsyncData<ProductsResponse>(
-  'products',
-  () => productsStore.fetchProducts(),
-  {
-    watch: [() => category, query]
-  }
-)
+} = useQuery<ProductsResponse>({
+  key: () => ['products', category,
+    { limit, skip, sortBy, order, q }],
+  query: () => $fetch('/api/products', {
+    params: { category },
+    query: { limit, skip, sortBy, order, q }
+  })
+})
 
+const page = computed(
+  () => Math.floor(skip / limit) + 1
+)
 const products = computed(
   () => productsData.value?.products ?? []
 )
@@ -82,8 +94,15 @@ const total = computed(
   () => productsData.value?.total ?? 0
 )
 const pageCount = computed(
-  () => Math.ceil(total.value / limit.value)
+  () => Math.ceil(total.value / limit)
 )
+
+const updatePage = (newPage: number) => {
+  const skip = (newPage - 1) * limit
+  navigateTo({
+    query: { limit, skip, sortBy, order, q }
+  })
+}
 </script>
 
 <style lang="scss" scoped>
