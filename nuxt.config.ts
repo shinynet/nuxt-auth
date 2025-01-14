@@ -4,7 +4,8 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@pinia/nuxt',
     'nuxt-quasar-ui',
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    '@pinia/colada-nuxt'
   ],
 
   components: [
