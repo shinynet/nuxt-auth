@@ -76,8 +76,13 @@ const {
   error: productsError,
   status: productsStatus
 } = useQuery<ProductsResponse>({
-  key: () => ['products', category,
-    { limit, skip, sortBy, order, q }],
+  key: () => [
+    { type: 'Product' },
+    { type: 'Category', id: category },
+    { type: 'Search', q },
+    { type: 'Sort', sortBy, order },
+    { type: 'Pagination', limit, skip }
+  ],
   query: () => $fetch('/api/products', {
     params: { category },
     query: { limit, skip, sortBy, order, q }
